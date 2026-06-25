@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design tokens — single source of truth, mirrored in tailwind.config.js */
+  --ink-900: #07070c;
+  --ink-800: #0e0e16;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-edge: rgba(255, 255, 255, 0.1);
+  --accent: #8b5cf6;
+  --accent-2: #67e8f9;
+  --text-hi: #f4f4f7;
+  --text-lo: #a1a1b5;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-glass-edge;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset for sticky nav when jumping to anchors */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ink-900 text-text-lo font-sans antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-text-hi font-display tracking-tight;
+    text-wrap: balance;
+  }
+
+  /* Visible, on-brand focus state for keyboard nav */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: var(--text-hi);
+  }
+}
+
+@layer utilities {
+  /* Subtle ambient backdrop glow used behind the page */
+  .bg-aurora {
+    background:
+      radial-gradient(60rem 40rem at 70% -10%, rgba(139, 92, 246, 0.12), transparent 60%),
+      radial-gradient(50rem 30rem at 10% 10%, rgba(103, 232, 249, 0.06), transparent 55%),
+      var(--ink-900);
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, var(--text-hi) 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Honor reduced motion globally: kill loops + transforms, keep content visible */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
