@@ -9,14 +9,8 @@ interface CounterProps {
   className?: string;
 }
 
-/** Animated number that counts up once it scrolls into view. */
-export function Counter({
-  value,
-  durationMs = 1200,
-  prefix = "",
-  suffix = "",
-  className,
-}: CounterProps) {
+/** Counts up once in view; respects reduced-motion. */
+export function Counter({ value, durationMs = 1200, prefix = "", suffix = "", className }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -40px 0px" });
   const reduce = useReducedMotion();
@@ -32,7 +26,6 @@ export function Counter({
     const start = performance.now();
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / durationMs);
-      // easeOutCubic
       const eased = 1 - Math.pow(1 - t, 3);
       setDisplay(Math.round(eased * value));
       if (t < 1) raf = requestAnimationFrame(tick);

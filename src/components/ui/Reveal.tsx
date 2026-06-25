@@ -3,16 +3,12 @@ import type { ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
-  /** Stagger index — multiplies the base delay. */
   index?: number;
   className?: string;
   as?: "div" | "li" | "section" | "span";
 }
 
-/**
- * Default reveal-on-scroll: opacity + 14px rise, ~0.5s ease-out.
- * Honors prefers-reduced-motion by rendering fully visible with no transform.
- */
+/** Reveal-on-scroll: opacity + 14px rise, weighty easing. Honors reduced-motion. */
 export function Reveal({ children, index = 0, className, as = "div" }: RevealProps) {
   const reduce = useReducedMotion();
 
@@ -22,7 +18,7 @@ export function Reveal({ children, index = 0, className, as = "div" }: RevealPro
       opacity: 1,
       y: 0,
       transition: {
-        duration: reduce ? 0 : 0.5,
+        duration: reduce ? 0 : 0.7,
         ease: [0.22, 1, 0.36, 1],
         delay: reduce ? 0 : index * 0.08,
       },

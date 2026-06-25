@@ -10,8 +10,11 @@ export interface Profile {
   location: string;
   email: string;
   phone: string;
+  tagline: string;
   valueProp: string;
   proofPoint: string;
+  /** Photo path under public/, or null to render the placeholder character card. */
+  photo: string | null;
   links: { label: string; href: string }[];
   resumeUrl: string;
   openTo: string;
@@ -73,8 +76,11 @@ export const profile: Profile = {
   location: "Arlington, TX",
   email: "sahithivelaga@gmail.com",
   phone: "(469) 653-5291",
+  tagline: "From raw data chaos to cloud intelligence.",
   valueProp: "I turn raw data into scalable, cost-efficient cloud pipelines.",
   proofPoint: "40% reduction in AWS EMR cluster resource consumption.",
+  // Drop sahithi-profile.jpg into public/ and set to "/portfolio/sahithi-profile.jpg".
+  photo: null,
   links: [
     // TODO: replace # with real profile URLs (or remove a button in Contact).
     { label: "LinkedIn", href: "#" },
@@ -259,13 +265,40 @@ export const coursework: string[] = [
   "Design & Analysis of Algorithms",
 ];
 
-export const sections = [
-  { id: "hero", label: "Entrance" },
-  { id: "snapshot", label: "Snapshot" },
-  { id: "experience", label: "Experience" },
-  { id: "devhub", label: "DevHub" },
-  { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
-  { id: "contact", label: "Contact" },
-] as const;
+export interface Badge {
+  id: string;
+  label: string;
+  mission: string;
+}
+
+/** Achievements unlocked across the realm — gold stars only. */
+export const badges: Badge[] = [
+  { id: "distributed", label: "Distributed Processing Unlocked", mission: "The Storm → The Engine" },
+  { id: "optimization", label: "Optimization Victory", mission: "EMR Boss Fight" },
+  { id: "platform", label: "Developer Platform Built", mission: "DevHub Command Center" },
+  { id: "golden", label: "Golden Records Forged", mission: "The Foundry" },
+  { id: "research", label: "Research Artifacts Unlocked", mission: "The Research Wing" },
+  { id: "recruiter", label: "Recruiter Match Ready", mission: "Victory Room" },
+];
+
+export interface Mission {
+  id: string;
+  act: "I" | "II" | "III";
+  label: string;
+  /** Short HUD/quest-map descriptor. */
+  tag: string;
+}
+
+/** The 10 story beats. `id` doubles as the in-realm scroll anchor. */
+export const missions: Mission[] = [
+  { id: "hero", act: "I", label: "Mission Briefing", tag: "The Call" },
+  { id: "map", act: "I", label: "Quest Map", tag: "Choose your path" },
+  { id: "engine", act: "II", label: "The Storm → The Engine", tag: "Distributed processing" },
+  { id: "boss", act: "II", label: "EMR Boss Fight", tag: "Cluster Load Beast" },
+  { id: "devhub", act: "II", label: "DevHub Command Center", tag: "Developer platform" },
+  { id: "foundry", act: "II", label: "The Foundry", tag: "Golden records" },
+  { id: "research", act: "II", label: "The Research Wing", tag: "Artifacts" },
+  { id: "skills", act: "III", label: "Skill Tree", tag: "Mastery" },
+  { id: "archives", act: "III", label: "Archives", tag: "Credentials" },
+  { id: "victory", act: "III", label: "Victory Room", tag: "The Offer" },
+];

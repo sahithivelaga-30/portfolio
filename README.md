@@ -1,19 +1,21 @@
-# The Data Palace
+# Data Realm
 
-A premium, recruiter-first portfolio for **Sahithi Velaga**, Data Engineer.
+An interactive, game-style portfolio for **Sahithi Velaga**, Data Engineer —
+built to look like a AAA production *and* convert recruiters.
 
-Dark glass design system, one signature data-flow animation, fast load. Built for a
-hiring manager to understand who she is, what she does, her strongest proof point
-(−40% AWS EMR resources), and how to reach her — within the first screen.
+**Prime directive: two doors, nothing gated.** After a sub-1.5s skippable boot,
+visitors choose **Enter the Realm** (cinematic scroll-driven game world) or
+**Quick View** (instant recruiter mode — every fact on one fast page). The game is
+delight, never a gate; Resume + Quick View are always one click away in the HUD.
 
 ## Stack
 
 - **Vite + React + TypeScript**
-- **Tailwind CSS** (design tokens as CSS variables + theme extension)
-- **Framer Motion** (reveals, counters, expand/collapse)
+- **Tailwind CSS** — DATA REALM tokens (one base, one accent, one energy; gold = achievements only)
+- **Framer Motion** — reveals, scroll-progress, weighty easing
 - **lucide-react** icons
-- Charts: inline SVG — no heavy chart libs
-- Hero animation: lightweight inline SVG (no WebGL) so first paint stays fast
+- Charts/motifs: inline SVG
+- *(Later phases)* React Three Fiber + drei + @react-three/postprocessing for the hero data-core only
 
 ## Develop
 
@@ -22,54 +24,60 @@ npm install
 npm run dev      # http://localhost:5173
 ```
 
-## Build
+## Build & preview
 
 ```bash
 npm run build    # type-check + production build to /dist
-npm run preview  # preview the production build locally
+npm run preview
 ```
 
-## Project structure
+## Structure
 
 ```
 src/
-  content.ts                # SINGLE SOURCE OF TRUTH — all resume data, typed
-  App.tsx                   # shell; below-fold sections are lazy-loaded
-  index.css                 # tokens + base + reduced-motion handling
+  content.ts              # SINGLE SOURCE OF TRUTH — all resume data, typed
+  App.tsx                 # boot → two-door entry → Quick View | Realm (state machine)
+  index.css               # tokens, grain+vignette overlay, reduced-motion
   components/
-    Nav.tsx                 # sticky nav + scroll-progress bar + active section
-    DataFlow.tsx            # the one signature animation (SVG)
-    Footer.tsx
-    ui/                     # Section, GlassCard, Button, MetricChip, Reveal, Counter
-    sections/               # Hero, Snapshot, Experience, DevHub, Projects, Skills, Education, Contact
+    Boot.tsx              # <1.5s skippable boot
+    EntryDoors.tsx        # the two doors
+    HUD.tsx               # persistent command bar + XP scroll progress
+    GrainVignette.tsx     # film-grain + vignette overlay
+    ProfileCard.tsx       # holographic character card (placeholder-safe)
+    QuickView.tsx         # recruiter mode — the hiring-critical path
+    Realm.tsx             # game world (Act I done; deeper acts in progress)
+    ui/                   # GlassPanel, HUDFrame, MonoLabel, AchievementBadge,
+                          # MissionCard, XPBar, Button, Reveal, Counter
 ```
+
+## Status
+
+Phases 0–3 complete (shell, tokens, HUD, content, two-door entry, full Quick View)
+plus Realm Act I (Mission Briefing + Quest Map). Remaining beats — Engine, EMR Boss,
+DevHub, Foundry, Research Wing, Skill Tree, Archives, Victory Room — and the 3D core
+land in later phases. See [`PLAN.md`](PLAN.md).
 
 ## Before you ship
 
-1. **Resume:** drop your latest `resume.pdf` into [`public/`](public/) — the
-   Download Resume buttons point to `/resume.pdf`.
-2. **Social links:** add real LinkedIn / GitHub URLs in
-   [`src/content.ts`](src/content.ts) (`profile.links`). Buttons with a `#`
-   placeholder are hidden automatically in Contact.
-3. **OG image:** add `public/og-image.png` (1200×630) for rich link previews.
+1. **Resume** — `public/resume.pdf` is wired to the Download buttons (base-aware).
+2. **Photo** — drop `public/sahithi-profile.jpg` and set `profile.photo` in
+   [`src/content.ts`](src/content.ts) to `"/portfolio/sahithi-profile.jpg"`.
+   Until then a labeled placeholder card renders (never a broken image).
+3. **Social links** — add real LinkedIn / GitHub URLs in `profile.links`
+   (placeholder `#` buttons hide automatically).
 
-## Deploy (Vercel)
+## Deploy (GitHub Pages)
 
-```bash
-npm i -g vercel
-vercel            # follow prompts; framework auto-detected as Vite
-vercel --prod
-```
-
-Or import the repo at [vercel.com/new](https://vercel.com/new) — build command
-`npm run build`, output dir `dist`. Any static host (Netlify, Cloudflare Pages,
-GitHub Pages) works the same way.
+Already wired: pushing to `main` runs `.github/workflows/deploy.yml`, which builds
+and publishes to Pages. The Vite `base` is `/portfolio/`, so the site serves at
+**https://sahithivelaga-30.github.io/portfolio/**. Enable once under
+**Settings → Pages → Source → GitHub Actions**.
 
 ## Design principles
 
-- **Premium = restraint.** One violet accent on ~10% of the surface. No gold.
-- **One looping element** (the hero data-flow). Everything else reveals once.
-- **Recruiter-first.** Role, proof point, and resume are above the fold.
-- **Accessible.** Semantic landmarks, keyboard nav, visible focus, AA contrast,
-  `prefers-reduced-motion` honored everywhere.
+- **Premium = restraint + craft.** When in doubt, remove an effect, improve the easing.
+- **Consistency is the luxury signal:** one glass spec, weighty `cubic-bezier(0.22,1,0.36,1)` motion.
+- **Recruiter-first.** Quick View loads instantly; nothing in the realm is gated.
+- **Accessible.** Semantic landmarks, keyboard nav, focus states, AA contrast,
+  `prefers-reduced-motion` collapses the world to a clean vertical story.
 - **Honest.** Titles and metrics are exactly as provided.

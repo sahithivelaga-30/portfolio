@@ -3,32 +3,28 @@
 @tailwind utilities;
 
 :root {
-  /* Design tokens — single source of truth, mirrored in tailwind.config.js */
-  --ink-900: #07070c;
-  --ink-800: #0e0e16;
+  /* DATA REALM tokens — single source of truth, mirrored in tailwind.config.js */
+  --void: #050510;
+  --surface: #0c0c1a;
   --glass: rgba(255, 255, 255, 0.05);
-  --glass-edge: rgba(255, 255, 255, 0.1);
+  --glass-edge: rgba(140, 120, 255, 0.18);
   --accent: #8b5cf6;
-  --accent-2: #67e8f9;
-  --text-hi: #f4f4f7;
-  --text-lo: #a1a1b5;
+  --energy: #38bdf8;
+  --gold: #f5c542;
+  --text-hi: #f4f4fa;
+  --text-lo: #9090a8;
 
   color-scheme: dark;
 }
 
 @layer base {
-  * {
-    @apply border-glass-edge;
-  }
-
   html {
     scroll-behavior: smooth;
-    /* offset for sticky nav when jumping to anchors */
     scroll-padding-top: 5rem;
   }
 
   body {
-    @apply bg-ink-900 text-text-lo font-sans antialiased;
+    @apply bg-void text-text-lo font-sans antialiased;
     font-feature-settings: "ss01", "cv01";
   }
 
@@ -40,7 +36,6 @@
     text-wrap: balance;
   }
 
-  /* Visible, on-brand focus state for keyboard nav */
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
@@ -48,26 +43,53 @@
   }
 
   ::selection {
-    background: rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.32);
     color: var(--text-hi);
   }
 }
 
 @layer utilities {
-  /* Subtle ambient backdrop glow used behind the page */
-  .bg-aurora {
+  /* Ambient world backdrop */
+  .bg-realm {
     background:
-      radial-gradient(60rem 40rem at 70% -10%, rgba(139, 92, 246, 0.12), transparent 60%),
-      radial-gradient(50rem 30rem at 10% 10%, rgba(103, 232, 249, 0.06), transparent 55%),
-      var(--ink-900);
+      radial-gradient(70rem 45rem at 75% -10%, rgba(139, 92, 246, 0.14), transparent 60%),
+      radial-gradient(50rem 30rem at 8% 5%, rgba(56, 189, 248, 0.07), transparent 55%),
+      var(--void);
   }
 
   .text-gradient {
-    background: linear-gradient(120deg, var(--text-hi) 30%, var(--accent) 100%);
+    background: linear-gradient(120deg, var(--text-hi) 25%, var(--accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+
+  .energy-text {
+    color: var(--energy);
+  }
+}
+
+/* Film grain + vignette overlay — production-value unifier. Pointer-transparent. */
+.fx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+.fx-overlay::before {
+  /* vignette */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+.fx-overlay::after {
+  /* grain */
+  content: "";
+  position: absolute;
+  inset: -50%;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Honor reduced motion globally: kill loops + transforms, keep content visible */
