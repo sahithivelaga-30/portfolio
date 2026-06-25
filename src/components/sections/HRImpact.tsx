@@ -23,7 +23,11 @@ export function HRImpact() {
         {REASONS.map((r, i) => (
           <Reveal key={r.title} index={i} className="h-full">
             <GlassCard hud interactive className="h-full p-5">
-              <span className="mb-3 inline-flex rounded-lg bg-sky/12 p-2 text-sky">
+              <span
+                className={`mb-3 inline-flex rounded-lg p-2 ${
+                  i % 2 === 0 ? "bg-sky/12 text-sky" : "bg-purple/12 text-purple"
+                }`}
+              >
                 <r.icon size={18} />
               </span>
               <p className="font-display text-sm font-semibold text-text-hi">{r.title}</p>

@@ -46,7 +46,12 @@ export function CaseStudy() {
               />
               <span
                 aria-hidden
-                className="pointer-events-none absolute h-72 w-72 rounded-full border border-sky/10"
+                className="pointer-events-none absolute h-64 w-64 animate-ring-spin rounded-full border border-dotted border-purple/30"
+                style={{ animationDirection: "reverse" }}
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute h-72 w-72 rounded-full border border-sky/15"
               />
               <span className="relative font-display text-7xl font-bold text-gold-grad sm:text-8xl">
                 <Counter value={40} suffix="%" />

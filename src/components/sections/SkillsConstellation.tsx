@@ -96,7 +96,7 @@ function BranchPanel({ branch, skills, xp }: { branch: string; skills: string[];
                     y1={a.y}
                     x2={b.x}
                     y2={b.y}
-                    stroke="#38BDF8"
+                    stroke={(i + k) % 2 === 0 ? "#1E78C2" : "#6D4FCB"}
                     strokeWidth={act ? 1 : 0.5}
                     strokeOpacity={hovered === null ? 0.1 : act ? 0.55 : 0.05}
                     className="transition-all duration-200"

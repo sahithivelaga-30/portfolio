@@ -1,9 +1,11 @@
+import { useReducedMotion } from "framer-motion";
+
 /**
- * Cinematic sky-blue world backdrop:
+ * Sky-blue world backdrop:
  *  - soft drifting clouds
- *  - a neon city skyline with blinking windows (gaming "buildings")
- *  - floating isometric voxel blocks (gaming art)
- * Fixed behind all content; fully decorative.
+ *  - floating career keywords & code symbols (from the résumé)
+ *  - a flowing data-network (DAG) at the bottom — packets travel the edges,
+ *    matching what a data engineer actually builds.
  */
 
 const CLOUDS = [
@@ -14,24 +16,37 @@ const CLOUDS = [
   { top: 44, w: 210, h: 58, dur: 80, delay: -20, op: 0.65 },
 ];
 
-// Career keywords / symbols (all from the résumé) drifting in the background.
-const KEYWORDS = [
-  { t: "PySpark", left: 8, top: 22, size: 17, gold: true, delay: 0 },
-  { t: "Java", left: 86, top: 16, size: 16, gold: false, delay: -2 },
-  { t: "AWS EMR", left: 72, top: 40, size: 15, gold: true, delay: -4 },
-  { t: "ETL", left: 20, top: 54, size: 16, gold: false, delay: -1 },
-  { t: "SQL", left: 91, top: 58, size: 15, gold: true, delay: -3 },
-  { t: "Scala", left: 12, top: 70, size: 14, gold: false, delay: -5 },
-  { t: "K-Means", left: 60, top: 66, size: 14, gold: false, delay: -2.5 },
-  { t: "FB Prophet", left: 33, top: 30, size: 14, gold: true, delay: -1.5 },
-  { t: "Talend", left: 80, top: 72, size: 14, gold: false, delay: -3.5 },
-  { t: "Tableau", left: 46, top: 14, size: 14, gold: true, delay: -0.8 },
-  { t: "{ }", left: 4, top: 44, size: 22, gold: false, delay: -2.2 },
-  { t: "</>", left: 64, top: 24, size: 20, gold: true, delay: -4.4 },
-  { t: "df.groupBy()", left: 26, top: 84, size: 13, gold: false, delay: -1.2 },
-  { t: "SELECT *", left: 70, top: 86, size: 13, gold: true, delay: -3.2 },
-  { t: "Σ", left: 50, top: 50, size: 26, gold: false, delay: -2.8 },
+type Tone = "sky" | "gold" | "purple";
+const KEYWORDS: { t: string; left: number; top: number; size: number; tone: Tone; delay: number }[] = [
+  { t: "PySpark", left: 7, top: 20, size: 18, tone: "gold", delay: 0 },
+  { t: "Java", left: 87, top: 14, size: 17, tone: "sky", delay: -2 },
+  { t: "AWS EMR", left: 71, top: 30, size: 15, tone: "purple", delay: -4 },
+  { t: "ETL", left: 19, top: 40, size: 17, tone: "sky", delay: -1 },
+  { t: "SQL", left: 92, top: 44, size: 16, tone: "gold", delay: -3 },
+  { t: "Scala", left: 10, top: 58, size: 15, tone: "purple", delay: -5 },
+  { t: "K-Means", left: 60, top: 18, size: 14, tone: "sky", delay: -2.5 },
+  { t: "FB Prophet", left: 34, top: 24, size: 14, tone: "gold", delay: -1.5 },
+  { t: "Talend", left: 82, top: 60, size: 14, tone: "purple", delay: -3.5 },
+  { t: "Tableau", left: 47, top: 12, size: 14, tone: "sky", delay: -0.8 },
+  { t: "Pandas", left: 26, top: 70, size: 14, tone: "purple", delay: -2.1 },
+  { t: "PyTorch", left: 67, top: 48, size: 14, tone: "gold", delay: -4.2 },
+  { t: "{ }", left: 4, top: 32, size: 24, tone: "sky", delay: -2.2 },
+  { t: "</>", left: 63, top: 8, size: 22, tone: "gold", delay: -4.4 },
+  { t: "λ", left: 40, top: 52, size: 26, tone: "purple", delay: -1.1 },
+  { t: "Σ", left: 52, top: 40, size: 26, tone: "sky", delay: -2.8 },
+  { t: "df.groupBy()", left: 14, top: 80, size: 13, tone: "sky", delay: -1.2 },
+  { t: "SELECT *", left: 74, top: 78, size: 13, tone: "gold", delay: -3.2 },
+  { t: "spark.read", left: 88, top: 70, size: 13, tone: "purple", delay: -0.6 },
+  { t: ".parquet", left: 33, top: 84, size: 13, tone: "sky", delay: -3.8 },
+  { t: "()=>", left: 96, top: 26, size: 18, tone: "purple", delay: -2.6 },
+  { t: "RDD", left: 2, top: 68, size: 15, tone: "gold", delay: -1.9 },
 ];
+
+const toneClass: Record<Tone, string> = {
+  sky: "text-sky/40",
+  gold: "text-goldhi/40",
+  purple: "text-purple/45",
+};
 
 export function SkyWorld() {
   return (
@@ -41,14 +56,7 @@ export function SkyWorld() {
         <span
           key={`c-${i}`}
           className="absolute animate-cloud-drift rounded-full bg-white blur-2xl"
-          style={{
-            top: `${c.top}%`,
-            width: c.w,
-            height: c.h,
-            opacity: c.op,
-            animationDuration: `${c.dur}s`,
-            animationDelay: `${c.delay}s`,
-          }}
+          style={{ top: `${c.top}%`, width: c.w, height: c.h, opacity: c.op, animationDuration: `${c.dur}s`, animationDelay: `${c.delay}s` }}
         />
       ))}
 
@@ -56,84 +64,80 @@ export function SkyWorld() {
       {KEYWORDS.map((k, i) => (
         <span
           key={`k-${i}`}
-          className={`absolute animate-block-bob select-none font-mono font-medium ${
-            k.gold ? "text-goldhi/35" : "text-sky/35"
-          }`}
-          style={{
-            left: `${k.left}%`,
-            top: `${k.top}%`,
-            fontSize: k.size,
-            ["--r" as string]: "0deg",
-            animationDelay: `${k.delay}s`,
-          }}
+          className={`absolute animate-block-bob select-none font-mono font-medium ${toneClass[k.tone]}`}
+          style={{ left: `${k.left}%`, top: `${k.top}%`, fontSize: k.size, ["--r" as string]: "0deg", animationDelay: `${k.delay}s` }}
         >
           {k.t}
         </span>
       ))}
 
-      {/* daytime city skyline */}
-      <Skyline />
+      {/* flowing data-network */}
+      <DataNetwork />
     </div>
   );
 }
 
-function Skyline() {
-  // Buildings as rects with blinking windows. preserveAspectRatio none → stretches full width.
-  const buildings = [
-    { x: 20, w: 70, h: 150 },
-    { x: 95, w: 54, h: 230 },
-    { x: 155, w: 80, h: 120 },
-    { x: 240, w: 60, h: 270 },
-    { x: 305, w: 90, h: 175 },
-    { x: 400, w: 64, h: 300 },
-    { x: 470, w: 76, h: 140 },
-    { x: 552, w: 58, h: 250 },
-    { x: 615, w: 96, h: 190 },
-    { x: 716, w: 60, h: 320 },
-    { x: 782, w: 84, h: 150 },
-    { x: 872, w: 56, h: 240 },
-    { x: 933, w: 92, h: 175 },
-    { x: 1030, w: 64, h: 290 },
-    { x: 1100, w: 90, h: 160 },
-  ];
+const NODES = [
+  { x: 50, y: 230 }, // 0 raw
+  { x: 230, y: 120 }, // 1
+  { x: 430, y: 235 }, // 2
+  { x: 620, y: 135 }, // 3
+  { x: 820, y: 240 }, // 4
+  { x: 1010, y: 125 }, // 5
+  { x: 1170, y: 215 }, // 6
+];
+const EDGES: [number, number][] = [
+  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [0, 2], [3, 5],
+];
+
+function edgePath(a: { x: number; y: number }, b: { x: number; y: number }) {
+  const mx = (a.x + b.x) / 2;
+  return `M ${a.x} ${a.y} C ${mx} ${a.y}, ${mx} ${b.y}, ${b.x} ${b.y}`;
+}
+
+function DataNetwork() {
+  const reduce = useReducedMotion();
+  const packetColors = ["#0E97B8", "#6D4FCB", "#A87E0E"];
   return (
     <svg
-      className="absolute inset-x-0 bottom-0 h-[42vh] w-full"
-      viewBox="0 0 1200 340"
+      className="absolute inset-x-0 bottom-0 h-[34vh] w-full"
+      viewBox="0 0 1200 300"
       preserveAspectRatio="none"
     >
-      <defs>
-        <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#7FB2DC" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#A9CDE9" stopOpacity="0.35" />
-        </linearGradient>
-      </defs>
-      {buildings.map((b, i) => (
-        <g key={i}>
-          <rect x={b.x} y={340 - b.h} width={b.w} height={b.h} fill="url(#bld)" stroke="rgba(46,143,214,0.30)" />
-          {/* windows */}
-          {Array.from({ length: Math.floor(b.h / 26) }).map((_, row) =>
-            Array.from({ length: Math.max(1, Math.floor(b.w / 22)) }).map((_, col) => {
-              const lit = (i * 7 + row * 3 + col * 5) % 4 === 0;
-              return (
-                <rect
-                  key={`${row}-${col}`}
-                  x={b.x + 7 + col * 22}
-                  y={340 - b.h + 12 + row * 26}
-                  width="9"
-                  height="12"
-                  rx="1"
-                  fill={lit ? ((i + col) % 2 === 0 ? "#D4AF37" : "#0EA5C4") : "rgba(46,143,214,0.18)"}
-                  className={lit ? "animate-window-blink" : undefined}
-                  style={lit ? { animationDelay: `${(row + col) * 0.4}s` } : undefined}
-                />
-              );
-            })
-          )}
+      {/* faint grid floor */}
+      {Array.from({ length: 14 }).map((_, i) => (
+        <line key={`g-${i}`} x1={i * 92} y1="0" x2={i * 92} y2="300" stroke="rgba(30,120,194,0.06)" />
+      ))}
+
+      {/* edges */}
+      {EDGES.map(([a, b], i) => (
+        <path
+          key={`e-${i}`}
+          id={`edge-${i}`}
+          d={edgePath(NODES[a], NODES[b])}
+          fill="none"
+          stroke="rgba(30,120,194,0.22)"
+          strokeWidth="1.5"
+        />
+      ))}
+
+      {/* traveling data packets */}
+      {!reduce &&
+        EDGES.map(([, ], i) => (
+          <circle key={`p-${i}`} r="3.5" fill={packetColors[i % packetColors.length]} opacity="0.85">
+            <animateMotion dur={`${3 + (i % 3)}s`} repeatCount="indefinite" begin={`${i * 0.5}s`}>
+              <mpath href={`#edge-${i}`} />
+            </animateMotion>
+          </circle>
+        ))}
+
+      {/* nodes */}
+      {NODES.map((n, i) => (
+        <g key={`n-${i}`}>
+          <circle cx={n.x} cy={n.y} r="9" fill="rgba(255,255,255,0.6)" stroke="rgba(176,134,40,0.55)" strokeWidth="1.5" />
+          <circle cx={n.x} cy={n.y} r="3.5" fill={i % 3 === 1 ? "#6D4FCB" : "#1E78C2"} />
         </g>
       ))}
-      {/* ground glow */}
-      <rect x="0" y="334" width="1200" height="6" fill="rgba(46,143,214,0.3)" />
     </svg>
   );
 }
