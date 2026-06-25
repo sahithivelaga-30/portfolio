@@ -80,7 +80,8 @@ export const profile: Profile = {
     { label: "LinkedIn", href: "#" },
     { label: "GitHub", href: "#" },
   ],
-  resumeUrl: "/resume.pdf",
+  // BASE_URL resolves to "/portfolio/" in the Pages build, "/" in dev.
+  resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
   openTo:
     "Open to data engineering, software engineering, and analytics-engineering roles.",
 };
