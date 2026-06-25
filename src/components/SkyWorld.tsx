@@ -7,11 +7,11 @@
  */
 
 const CLOUDS = [
-  { top: 8, w: 220, h: 60, dur: 70, delay: 0, op: 0.5 },
-  { top: 18, w: 300, h: 80, dur: 95, delay: -30, op: 0.35 },
-  { top: 30, w: 180, h: 52, dur: 60, delay: -12, op: 0.45 },
-  { top: 5, w: 260, h: 70, dur: 110, delay: -55, op: 0.28 },
-  { top: 42, w: 200, h: 56, dur: 80, delay: -20, op: 0.3 },
+  { top: 8, w: 240, h: 64, dur: 70, delay: 0, op: 0.92 },
+  { top: 18, w: 320, h: 86, dur: 95, delay: -30, op: 0.7 },
+  { top: 30, w: 190, h: 54, dur: 60, delay: -12, op: 0.85 },
+  { top: 6, w: 280, h: 74, dur: 110, delay: -55, op: 0.6 },
+  { top: 44, w: 210, h: 58, dur: 80, delay: -20, op: 0.65 },
 ];
 
 const BLOCKS = [
@@ -99,13 +99,13 @@ function Skyline() {
     >
       <defs>
         <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0A2C4C" />
-          <stop offset="100%" stopColor="#061B33" />
+          <stop offset="0%" stopColor="#7FB2DC" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#A9CDE9" stopOpacity="0.35" />
         </linearGradient>
       </defs>
       {buildings.map((b, i) => (
         <g key={i}>
-          <rect x={b.x} y={340 - b.h} width={b.w} height={b.h} fill="url(#bld)" stroke="rgba(56,189,248,0.18)" />
+          <rect x={b.x} y={340 - b.h} width={b.w} height={b.h} fill="url(#bld)" stroke="rgba(46,143,214,0.30)" />
           {/* windows */}
           {Array.from({ length: Math.floor(b.h / 26) }).map((_, row) =>
             Array.from({ length: Math.max(1, Math.floor(b.w / 22)) }).map((_, col) => {
@@ -118,7 +118,7 @@ function Skyline() {
                   width="9"
                   height="12"
                   rx="1"
-                  fill={lit ? ((i + col) % 2 === 0 ? "#F5C542" : "#22D3EE") : "rgba(125,200,255,0.12)"}
+                  fill={lit ? ((i + col) % 2 === 0 ? "#D4AF37" : "#0EA5C4") : "rgba(46,143,214,0.18)"}
                   className={lit ? "animate-window-blink" : undefined}
                   style={lit ? { animationDelay: `${(row + col) * 0.4}s` } : undefined}
                 />
@@ -128,7 +128,7 @@ function Skyline() {
         </g>
       ))}
       {/* ground glow */}
-      <rect x="0" y="334" width="1200" height="6" fill="rgba(56,189,248,0.25)" />
+      <rect x="0" y="334" width="1200" height="6" fill="rgba(46,143,214,0.3)" />
     </svg>
   );
 }

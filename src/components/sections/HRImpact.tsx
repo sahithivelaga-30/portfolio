@@ -45,7 +45,7 @@ export function HRImpact() {
               <a
                 href={profile.resumeUrl}
                 download
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky to-cyan px-5 py-3 text-sm font-semibold text-bg shadow-glow transition hover:brightness-110"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky to-cyan px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:brightness-110"
               >
                 <Download size={16} /> Download Resume
               </a>

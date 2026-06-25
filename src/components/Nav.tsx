@@ -49,7 +49,7 @@ export function Nav() {
             <a
               href={profile.resumeUrl}
               download
-              className="hidden items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky to-cyan px-3 py-1.5 text-xs font-semibold text-bg shadow-glow transition hover:brightness-110 sm:inline-flex"
+              className="hidden items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky to-cyan px-3 py-1.5 text-xs font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-flex"
             >
               <Download size={14} /> Resume
             </a>

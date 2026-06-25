@@ -1,6 +1,7 @@
 import { CursorGlow } from "./components/Ambient";
 import { SkyWorld } from "./components/SkyWorld";
 import { Nav } from "./components/Nav";
+import { TechTicker } from "./components/TechTicker";
 import { Hero } from "./components/sections/Hero";
 import { StoryPath } from "./components/sections/StoryPath";
 import { CaseStudy } from "./components/sections/CaseStudy";
@@ -21,7 +22,7 @@ export default function App() {
 
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-sky focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-bg"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-sky focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
       >
         Skip to content
       </a>
@@ -30,6 +31,7 @@ export default function App() {
 
       <main id="main" className="relative z-10">
         <Hero />
+        <TechTicker />
         <StoryPath />
         <CaseStudy />
         <EngineeringLab />

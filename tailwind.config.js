@@ -4,21 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Sky-blue theme (deep, glowing) with dark-golden glass edges
-        bg: "#061A2E",
-        darknavy: "#0A2540",
-        card: "rgba(255,255,255,0.05)",
-        edge: "rgba(201,162,77,0.42)", // dark golden glass edge
-        sky: "#38BDF8",
-        cyan: "#22D3EE",
-        purple: "#8B5CF6",
-        gold: "#D4AF37", // dark golden
-        goldhi: "#F5C542", // bright gold (achievements / shimmer)
-        success: "#10B981",
-        danger: "#EF4444",
+        // Light sky-blue theme, dark fonts, rich dark-golden glass edges
+        bg: "#EAF5FF",
+        darknavy: "#FFFFFF", // light panel fill (legacy name)
+        card: "rgba(255,255,255,0.62)",
+        edge: "rgba(184,142,47,0.45)", // dark-golden glass edge
+        sky: "#2E8FD6",
+        cyan: "#0EA5C4",
+        purple: "#7C5CD6",
+        gold: "#9A7B18", // deep gold
+        goldhi: "#B8860B", // rich gold (readable on light)
+        success: "#0F9D6B",
+        danger: "#DC2626",
         text: {
-          hi: "#F8FAFC",
-          lo: "#A7C0D8",
+          hi: "#0B2540", // deep navy headings
+          lo: "#46627E", // muted slate-blue body
         },
       },
       fontFamily: {
@@ -71,6 +71,7 @@ export default {
           "50%": { transform: "translateY(-16px) rotate(var(--r, 0deg))" },
         },
         "window-blink": { "0%, 100%": { opacity: "0.85" }, "50%": { opacity: "0.25" } },
+        marquee: { "0%": { transform: "translateX(0)" }, "100%": { transform: "translateX(-50%)" } },
       },
       animation: {
         "scan-line": "scan-line 3.5s ease-in-out infinite",
@@ -87,6 +88,7 @@ export default {
         "cloud-drift": "cloud-drift 60s linear infinite",
         "block-bob": "block-bob 7s ease-in-out infinite",
         "window-blink": "window-blink 4s ease-in-out infinite",
+        marquee: "marquee 28s linear infinite",
       },
     },
   },

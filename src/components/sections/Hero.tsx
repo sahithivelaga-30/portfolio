@@ -2,6 +2,7 @@ import { Briefcase, Download, FolderGit2, Mail, MapPin, Sparkles, Zap } from "lu
 import { motion } from "framer-motion";
 import { HolographicCard } from "../HolographicCard";
 import { GlassCard } from "../ui/GlassCard";
+import { TypingLine } from "../ui/TypingLine";
 import { Reveal } from "../ui/Reveal";
 import { floatingBadges, profile } from "../../content";
 
@@ -35,6 +36,9 @@ export function Hero() {
             <p className="mt-5 max-w-xl font-display text-xl font-medium text-text-hi sm:text-2xl">
               I build faster, cleaner, production-ready data systems.
             </p>
+            <div className="mt-4">
+              <TypingLine />
+            </div>
           </Reveal>
 
           {/* About Sahithi */}
@@ -78,7 +82,7 @@ export function Hero() {
               <a
                 href={profile.resumeUrl}
                 download
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky to-cyan px-5 py-3 text-sm font-semibold text-bg shadow-glow transition hover:brightness-110"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky to-cyan px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:brightness-110"
               >
                 <Download size={16} /> Download Resume
               </a>
