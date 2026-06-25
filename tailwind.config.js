@@ -4,18 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: "#050510",
-        surface: "#0C0C1A",
-        glass: {
-          DEFAULT: "rgba(255,255,255,0.05)",
-          edge: "rgba(140,120,255,0.18)",
-        },
-        accent: "#8B5CF6", // the world color (brand violet)
-        energy: "#38BDF8", // data/energy highlight — sparingly
-        gold: "#F5C542", // ACHIEVEMENT STARS ONLY
+        canvas: "#F3F9FF", // page background
+        softsky: "#E0F2FE", // raised soft sky
+        sky: "#38BDF8", // primary sky blue
+        cyan: "#22D3EE", // electric cyan
+        navy: "#0F172A", // deep navy text
+        luxnavy: "#1E293B", // luxury navy
+        purpleaccent: "#8B5CF6", // soft purple accent
+        gold: "#D4AF37", // premium gold
+        danger: "#EF4444", // before-optimization only
+        success: "#10B981", // after-optimization only
         text: {
-          hi: "#F4F4FA",
-          lo: "#9090A8",
+          hi: "#0F172A",
+          lo: "#475569",
         },
       },
       fontFamily: {
@@ -23,40 +24,40 @@ export default {
         display: ["Geist", "Satoshi", "Inter", "system-ui", "sans-serif"],
         mono: ['"Geist Mono"', '"JetBrains Mono"', "ui-monospace", "monospace"],
       },
-      maxWidth: {
-        content: "75rem",
-      },
-      borderRadius: {
-        // ONE corner radius for every glass panel — the consistency = luxury rule
-        panel: "1rem",
-      },
+      maxWidth: { content: "78rem" },
+      borderRadius: { panel: "1.25rem" },
       boxShadow: {
-        glass: "0 8px 30px rgba(0,0,0,0.45)",
-        "glass-lift": "0 16px 50px rgba(0,0,0,0.55)",
-        glow: "0 0 24px rgba(139,92,246,0.25)",
+        glass: "0 10px 40px rgba(56,189,248,0.10), 0 2px 8px rgba(15,23,42,0.04)",
+        "glass-lift": "0 20px 60px rgba(56,189,248,0.18), 0 4px 12px rgba(15,23,42,0.06)",
+        glow: "0 0 30px rgba(56,189,248,0.30)",
       },
       keyframes: {
         "scan-line": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
+          "0%": { transform: "translateY(-120%)" },
+          "100%": { transform: "translateY(420%)" },
         },
-        "core-pulse": {
-          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
-          "50%": { opacity: "1", transform: "scale(1.05)" },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        drift: {
+          "0%": { transform: "translate(0,0)" },
+          "50%": { transform: "translate(14px,-18px)" },
+          "100%": { transform: "translate(0,0)" },
         },
         "flow-dash": { to: { strokeDashoffset: "-200" } },
-        drift: {
-          "0%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(12px, -16px)" },
-          "100%": { transform: "translate(0, 0)" },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "0.7", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.04)" },
         },
         "caret-blink": { "0%, 100%": { opacity: "1" }, "50%": { opacity: "0" } },
       },
       animation: {
-        "scan-line": "scan-line 4s linear infinite",
-        "core-pulse": "core-pulse 3s ease-in-out infinite",
+        "scan-line": "scan-line 3.5s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
+        drift: "drift 16s ease-in-out infinite",
         "flow-dash": "flow-dash 3s linear infinite",
-        drift: "drift 14s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         "caret-blink": "caret-blink 1s step-end infinite",
       },
     },

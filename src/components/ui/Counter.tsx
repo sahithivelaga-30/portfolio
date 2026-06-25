@@ -9,8 +9,7 @@ interface CounterProps {
   className?: string;
 }
 
-/** Counts up once in view; respects reduced-motion. */
-export function Counter({ value, durationMs = 1200, prefix = "", suffix = "", className }: CounterProps) {
+export function Counter({ value, durationMs = 1300, prefix = "", suffix = "", className }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -40px 0px" });
   const reduce = useReducedMotion();
@@ -26,8 +25,7 @@ export function Counter({ value, durationMs = 1200, prefix = "", suffix = "", cl
     const start = performance.now();
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / durationMs);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setDisplay(Math.round(eased * value));
+      setDisplay(Math.round((1 - Math.pow(1 - t, 3)) * value));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);

@@ -8,25 +8,18 @@ interface RevealProps {
   as?: "div" | "li" | "section" | "span";
 }
 
-/** Reveal-on-scroll: opacity + 14px rise, weighty easing. Honors reduced-motion. */
+/** Cinematic reveal: opacity + 16px rise, weighty easing. Honors reduced-motion. */
 export function Reveal({ children, index = 0, className, as = "div" }: RevealProps) {
   const reduce = useReducedMotion();
-
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 14 },
+    hidden: { opacity: 0, y: reduce ? 0 : 16 },
     show: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: reduce ? 0 : 0.7,
-        ease: [0.22, 1, 0.36, 1],
-        delay: reduce ? 0 : index * 0.08,
-      },
+      transition: { duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : index * 0.08 },
     },
   };
-
   const MotionTag = motion[as];
-
   return (
     <MotionTag
       className={className}

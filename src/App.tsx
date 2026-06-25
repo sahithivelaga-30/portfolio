@@ -1,72 +1,60 @@
-import { Suspense, lazy, useCallback, useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { Boot } from "./components/Boot";
-import { EntryDoors } from "./components/EntryDoors";
-import { GrainVignette } from "./components/GrainVignette";
-import { HUD } from "./components/HUD";
-import { QuickView } from "./components/QuickView";
-
-export type View = "entry" | "quick" | "realm";
-
-// Realm is the heaviest view (and gets the 3D core later) — code-split it.
-const Realm = lazy(() =>
-  import("./components/Realm").then((m) => ({ default: m.Realm }))
-);
+import { WorldProvider } from "./context/WorldContext";
+import { CursorGlow, RawFragments } from "./components/Ambient";
+import { SkyGameNav } from "./components/SkyGameNav";
+import { HeroProfileIntro } from "./components/HeroProfileIntro";
+import { DataStorm } from "./components/chapters/DataStorm";
+import { CodeTransformationGate } from "./components/chapters/CodeTransformationGate";
+import { EMROptimizationBattle } from "./components/chapters/EMROptimizationBattle";
+import { DevHubCommandCenter } from "./components/chapters/DevHubCommandCenter";
+import { GoldenRecordFactory } from "./components/chapters/GoldenRecordFactory";
+import { AIPredictionObservatory } from "./components/chapters/AIPredictionObservatory";
+import { BusinessIntelligenceGallery } from "./components/chapters/BusinessIntelligenceGallery";
+import { CustomerSegmentationLab } from "./components/chapters/CustomerSegmentationLab";
+import { SkillTreeOfIntelligence } from "./components/chapters/SkillTreeOfIntelligence";
+import { EducationQuestLog } from "./components/chapters/EducationQuestLog";
+import { RecruiterVictoryRoom } from "./components/chapters/RecruiterVictoryRoom";
+import { profile } from "./content";
 
 export default function App() {
-  // Boot plays once per tab session; skip on internal navigations.
-  const [booted, setBooted] = useState(() => sessionStorage.getItem("dr-booted") === "1");
-  const [view, setView] = useState<View>("entry");
-
-  const finishBoot = useCallback(() => {
-    sessionStorage.setItem("dr-booted", "1");
-    setBooted(true);
-  }, []);
-
-  // Reset scroll when switching top-level views.
-  const navigate = useCallback((v: View) => {
-    setView(v);
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, []);
-
-  useEffect(() => {
-    document.title =
-      view === "quick"
-        ? "Sahithi Velaga — Data Engineer (Resume)"
-        : "Sahithi Velaga — Data Realm";
-  }, [view]);
-
   return (
-    <div className="min-h-screen bg-void">
-      <GrainVignette />
+    <WorldProvider>
+      <div className="relative min-h-screen overflow-x-clip bg-sky-world">
+        <CursorGlow />
+        <RawFragments />
 
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:text-white"
-      >
-        Skip to content
-      </a>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-sky focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Skip to content
+        </a>
 
-      <AnimatePresence mode="wait">
-        {!booted && <Boot key="boot" onDone={finishBoot} />}
-      </AnimatePresence>
+        <SkyGameNav />
 
-      {booted && view === "entry" && <EntryDoors onChoose={navigate} />}
+        <main id="main" className="relative z-10">
+          <HeroProfileIntro />
+          <DataStorm />
+          <CodeTransformationGate />
+          <EMROptimizationBattle />
+          <DevHubCommandCenter />
+          <GoldenRecordFactory />
+          <AIPredictionObservatory />
+          <BusinessIntelligenceGallery />
+          <CustomerSegmentationLab />
+          <SkillTreeOfIntelligence />
+          <EducationQuestLog />
+          <RecruiterVictoryRoom />
+        </main>
 
-      {booted && view !== "entry" && (
-        <>
-          <HUD view={view} onNavigate={navigate} />
-          <div id="main">
-            {view === "quick" ? (
-              <QuickView />
-            ) : (
-              <Suspense fallback={<div className="min-h-screen" aria-hidden />}>
-                <Realm onNavigate={navigate} />
-              </Suspense>
-            )}
+        <footer className="relative z-10 border-t border-sky/15 bg-white/50">
+          <div className="mx-auto flex max-w-content flex-col items-center justify-between gap-2 px-6 py-8 text-xs text-text-lo sm:flex-row">
+            <p>
+              © {new Date().getFullYear()} {profile.name} · {profile.role}
+            </p>
+            <p className="font-mono text-sky">Data Ascension — From Raw Data Chaos to Cloud Intelligence</p>
           </div>
-        </>
-      )}
-    </div>
+        </footer>
+      </div>
+    </WorldProvider>
   );
 }

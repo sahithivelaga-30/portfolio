@@ -281,6 +281,50 @@ export const badges: Badge[] = [
   { id: "recruiter", label: "Recruiter Match Ready", mission: "Victory Room" },
 ];
 
+/** Hero floating stat cards. */
+export const statCards: { value: string; label: string; accent?: boolean }[] = [
+  { value: "40%", label: "EMR Resource Reduction", accent: true },
+  { value: "PySpark + Java", label: "Migration & Optimization" },
+  { value: "AWS EMR", label: "Cloud Processing" },
+  { value: "DevHub", label: "+ Backstage Platform" },
+  { value: "ETL", label: "Golden Records" },
+  { value: "AI / Analytics", label: "Projects" },
+];
+
+/** Orbiting badges around the hero profile card. */
+export const floatingBadges: string[] = [
+  "40% EMR Resource Reduction",
+  "PySpark Optimizer",
+  "Java Performance Testing",
+  "DevHub Builder",
+  "Cloud Data Engineer",
+];
+
+export const profileTags: string[] = ["PySpark", "Java", "AWS EMR", "ETL", "DevHub", "Analytics"];
+
+/** The skill tree branches (Ch. 9) — proficiency, not invented metrics. */
+export const skillTree: { branch: string; xp: number; skills: string[] }[] = [
+  { branch: "Data Engineering", xp: 92, skills: ["PySpark", "Scala", "Python", "Java", "SQL", "ETL"] },
+  { branch: "Cloud", xp: 88, skills: ["AWS EMR", "AWS S3", "EC2", "IAM", "Azure"] },
+  { branch: "Databases", xp: 84, skills: ["Oracle", "MySQL", "PostgreSQL", "MongoDB"] },
+  { branch: "Analytics", xp: 82, skills: ["Tableau", "Pandas", "NumPy", "SciPy", "Matplotlib", "Seaborn"] },
+  { branch: "AI / ML", xp: 78, skills: ["PyTorch", "Machine Learning", "FB Prophet", "K-Means", "Data Mining"] },
+  { branch: "Developer Platform", xp: 80, skills: ["React", "Backstage", "Figma", "Wayfarer", "Node.js"] },
+  { branch: "DevOps", xp: 80, skills: ["Docker", "Jenkins", "Git", "Bitbucket", "Maven"] },
+];
+
+/** Top nav anchors. */
+export const navItems: { id: string; label: string }[] = [
+  { id: "intro", label: "Intro" },
+  { id: "storm", label: "Story" },
+  { id: "battle", label: "Experian" },
+  { id: "devhub", label: "DevHub" },
+  { id: "observatory", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
+  { id: "contact", label: "Contact" },
+];
+
 export interface Mission {
   id: string;
   act: "I" | "II" | "III";

@@ -1,21 +1,21 @@
-# Data Realm
+# Data Ascension
 
-An interactive, game-style portfolio for **Sahithi Velaga**, Data Engineer —
-built to look like a AAA production *and* convert recruiters.
+A cinematic, recruiter-ready story portfolio for **Sahithi Velaga**, Data Engineer —
+*From Raw Data Chaos to Cloud Intelligence.*
 
-**Prime directive: two doors, nothing gated.** After a sub-1.5s skippable boot,
-visitors choose **Enter the Realm** (cinematic scroll-driven game world) or
-**Quick View** (instant recruiter mode — every fact on one fast page). The game is
-delight, never a gate; Resume + Quick View are always one click away in the HUD.
+A bright **sky-blue glass world** with a gaming-inspired HUD that walks a recruiter
+through 11 chapters: the data storm, the PySpark/Java code gate, the **EMR optimization
+boss battle** (−40% resources), the DevHub command center, the golden-record factory,
+the AI prediction observatory, the BI gallery, the segmentation lab, the skill tree,
+the education quest log, and the recruiter victory room.
 
 ## Stack
 
 - **Vite + React + TypeScript**
-- **Tailwind CSS** — DATA REALM tokens (one base, one accent, one energy; gold = achievements only)
-- **Framer Motion** — reveals, scroll-progress, weighty easing
-- **lucide-react** icons
-- Charts/motifs: inline SVG
-- *(Later phases)* React Three Fiber + drei + @react-three/postprocessing for the hero data-core only
+- **Tailwind CSS** — sky-blue tokens (one glass spec; gold reserved for achievements)
+- **Framer Motion** — scroll reveals, scroll-linked boss HP, counters, hologram scan
+- **lucide-react** icons; charts/visuals are inline SVG
+- React Three Fiber + three are installed for an optional subtle 3D accent (not currently imported)
 
 ## Develop
 
@@ -35,49 +35,50 @@ npm run preview
 
 ```
 src/
-  content.ts              # SINGLE SOURCE OF TRUTH — all resume data, typed
-  App.tsx                 # boot → two-door entry → Quick View | Realm (state machine)
-  index.css               # tokens, grain+vignette overlay, reduced-motion
+  content.ts                 # SINGLE SOURCE OF TRUTH — all resume data, typed
+  App.tsx                    # single-page; nav + hero + 11 chapters + footer
+  index.css                  # sky-blue tokens, glass spec, raw-world overlay, reduced-motion
+  context/WorldContext.tsx   # Raw / Intelligence world switch
   components/
-    Boot.tsx              # <1.5s skippable boot
-    EntryDoors.tsx        # the two doors
-    HUD.tsx               # persistent command bar + XP scroll progress
-    GrainVignette.tsx     # film-grain + vignette overlay
-    ProfileCard.tsx       # holographic character card (placeholder-safe)
-    QuickView.tsx         # recruiter mode — the hiring-critical path
-    Realm.tsx             # game world (Act I done; deeper acts in progress)
-    ui/                   # GlassPanel, HUDFrame, MonoLabel, AchievementBadge,
-                          # MissionCard, XPBar, Button, Reveal, Counter
+    SkyGameNav.tsx           # sticky glass nav + scroll progress + world switch
+    WorldSwitchToggle.tsx
+    Ambient.tsx              # cursor glow + raw-world fragments
+    HeroProfileIntro.tsx     # "The Data Ascension Begins"
+    HolographicProfileCard.tsx
+    ui/                      # GlassCard, ChapterHeader/Takeaway, AchievementBadge,
+                             # FloatingBadge, Reveal, Counter
+    chapters/                # the 11 chapters, Data Storm → Recruiter Victory Room
 ```
 
-## Status
+## Special features
 
-Phases 0–3 complete (shell, tokens, HUD, content, two-door entry, full Quick View)
-plus Realm Act I (Mission Briefing + Quest Map). Remaining beats — Engine, EMR Boss,
-DevHub, Foundry, Research Wing, Skill Tree, Archives, Victory Room — and the 3D core
-land in later phases. See [`PLAN.md`](PLAN.md).
+- **World Switch (Raw / Intelligence)** in the nav — flips the world between intentional
+  data-chaos fragments and the clean intelligence view. Default is Intelligence; Raw is a
+  clearly-labeled stylized overlay, never literally broken UI.
+- **EMR Boss Battle** — scroll-linked: the Cluster Load Beast's HP drains 100% → 60% as
+  three tools land, ending on the −40% victory. Reduced-motion gets a static before/after.
 
 ## Before you ship
 
 1. **Resume** — `public/resume.pdf` is wired to the Download buttons (base-aware).
 2. **Photo** — drop `public/sahithi-profile.jpg` and set `profile.photo` in
-   [`src/content.ts`](src/content.ts) to `"/portfolio/sahithi-profile.jpg"`.
-   Until then a labeled placeholder card renders (never a broken image).
-3. **Social links** — add real LinkedIn / GitHub URLs in `profile.links`
-   (placeholder `#` buttons hide automatically).
+   [`src/content.ts`](src/content.ts) to `"/portfolio/sahithi-profile.jpg"`. Until then a
+   premium placeholder card renders (never a broken image).
+3. **Social links** — add real LinkedIn / GitHub URLs in `profile.links`.
 
 ## Deploy (GitHub Pages)
 
-Already wired: pushing to `main` runs `.github/workflows/deploy.yml`, which builds
-and publishes to Pages. The Vite `base` is `/portfolio/`, so the site serves at
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishes to Pages.
+Vite `base` is `/portfolio/`, so the site serves at
 **https://sahithivelaga-30.github.io/portfolio/**. Enable once under
 **Settings → Pages → Source → GitHub Actions**.
 
-## Design principles
+## Principles
 
-- **Premium = restraint + craft.** When in doubt, remove an effect, improve the easing.
-- **Consistency is the luxury signal:** one glass spec, weighty `cubic-bezier(0.22,1,0.36,1)` motion.
-- **Recruiter-first.** Quick View loads instantly; nothing in the realm is gated.
-- **Accessible.** Semantic landmarks, keyboard nav, focus states, AA contrast,
-  `prefers-reduced-motion` collapses the world to a clean vertical story.
+- **Premium = restraint + craft.** One glass spec, weighty `cubic-bezier(0.22,1,0.36,1)` motion.
+- **Recruiter-first.** Every chapter answers: what problem, what Sahithi did, what tool, what
+  changed, why HR should care.
+- **Accessible.** Semantic landmarks, keyboard nav, focus states, `prefers-reduced-motion`.
 - **Honest.** Titles and metrics are exactly as provided.
+
+> Earlier iterations (Data Palace, Data Realm) remain in git history.

@@ -3,96 +3,97 @@
 @tailwind utilities;
 
 :root {
-  /* DATA REALM tokens — single source of truth, mirrored in tailwind.config.js */
-  --void: #050510;
-  --surface: #0c0c1a;
-  --glass: rgba(255, 255, 255, 0.05);
-  --glass-edge: rgba(140, 120, 255, 0.18);
-  --accent: #8b5cf6;
-  --energy: #38bdf8;
-  --gold: #f5c542;
-  --text-hi: #f4f4fa;
-  --text-lo: #9090a8;
-
-  color-scheme: dark;
+  --canvas: #f3f9ff;
+  --softsky: #e0f2fe;
+  --glass: rgba(255, 255, 255, 0.78);
+  --glass-edge: rgba(56, 189, 248, 0.28);
+  --sky: #38bdf8;
+  --cyan: #22d3ee;
+  --navy: #0f172a;
+  --purple: #8b5cf6;
+  --gold: #d4af37;
+  color-scheme: light;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
   }
-
   body {
-    @apply bg-void text-text-lo font-sans antialiased;
+    @apply bg-canvas text-text-lo font-sans antialiased;
     font-feature-settings: "ss01", "cv01";
   }
-
   h1,
   h2,
   h3,
   h4 {
-    @apply text-text-hi font-display tracking-tight;
+    @apply text-navy font-display tracking-tight;
     text-wrap: balance;
   }
-
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--sky);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
-
   ::selection {
-    background: rgba(139, 92, 246, 0.32);
-    color: var(--text-hi);
+    background: rgba(56, 189, 248, 0.25);
+    color: var(--navy);
+  }
+}
+
+@layer components {
+  /* The ONE glass spec — white translucent over the sky world */
+  .glass {
+    @apply rounded-panel border bg-[var(--glass)] backdrop-blur-[16px];
+    border-color: var(--glass-edge);
+    box-shadow: 0 10px 40px rgba(56, 189, 248, 0.1), 0 2px 8px rgba(15, 23, 42, 0.04);
   }
 }
 
 @layer utilities {
-  /* Ambient world backdrop */
-  .bg-realm {
+  /* Bright sky world backdrop with soft clouds */
+  .bg-sky-world {
     background:
-      radial-gradient(70rem 45rem at 75% -10%, rgba(139, 92, 246, 0.14), transparent 60%),
-      radial-gradient(50rem 30rem at 8% 5%, rgba(56, 189, 248, 0.07), transparent 55%),
-      var(--void);
+      radial-gradient(60rem 40rem at 80% -5%, rgba(56, 189, 248, 0.22), transparent 60%),
+      radial-gradient(50rem 32rem at 5% 8%, rgba(34, 211, 238, 0.16), transparent 55%),
+      radial-gradient(40rem 30rem at 50% 110%, rgba(139, 92, 246, 0.08), transparent 60%),
+      linear-gradient(180deg, #f3f9ff 0%, #e0f2fe 100%);
   }
-
-  .text-gradient {
-    background: linear-gradient(120deg, var(--text-hi) 25%, var(--accent) 100%);
+  .text-sky-gradient {
+    background: linear-gradient(110deg, var(--sky) 10%, var(--cyan) 55%, var(--purple) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-
-  .energy-text {
-    color: var(--energy);
-  }
 }
 
-/* Film grain + vignette overlay — production-value unifier. Pointer-transparent. */
-.fx-overlay {
+/* Mouse-following ambient sky glow */
+.cursor-glow {
+  position: fixed;
+  z-index: 0;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 60%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+/* Raw-world overlay: scattered, intentional, never literally broken UI */
+.raw-fragments {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 1;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-.fx-overlay::before {
-  /* vignette */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
-}
-.fx-overlay::after {
-  /* grain */
-  content: "";
-  position: absolute;
-  inset: -50%;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+[data-world="raw"] .raw-fragments {
+  opacity: 1;
 }
 
-/* Honor reduced motion globally: kill loops + transforms, keep content visible */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
