@@ -5,6 +5,7 @@ import { MonoLabel } from "./ui/MonoLabel";
 import { MissionCard } from "./ui/MissionCard";
 import { Reveal } from "./ui/Reveal";
 import { ProfileCard } from "./ProfileCard";
+import { HeroCore } from "./realm/HeroCore";
 import { Engine } from "./realm/Engine";
 import { Boss } from "./realm/Boss";
 import { DevHubCenter } from "./realm/DevHubCenter";
@@ -62,9 +63,9 @@ export function Realm({ onNavigate }: { onNavigate: (v: View) => void }) {
           </Reveal>
 
           <Reveal index={2} className="flex flex-col items-center gap-6 lg:items-end">
-            {/* placeholder for the signature 3D data-core (Phase 5) */}
-            <HUDFrame className="grid aspect-square w-full max-w-sm place-items-center rounded-panel border border-glass-edge bg-surface/60 p-6 backdrop-blur-[16px]">
-              <DataCorePlaceholder />
+            {/* the signature 3D data-core (WebGL, lazy; SVG fallback on mobile/reduced-motion) */}
+            <HUDFrame className="aspect-square w-full max-w-sm overflow-hidden rounded-panel border border-glass-edge bg-surface/60 backdrop-blur-[16px]">
+              <HeroCore />
             </HUDFrame>
             <ProfileCard />
           </Reveal>
@@ -127,28 +128,4 @@ export function Realm({ onNavigate }: { onNavigate: (v: View) => void }) {
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
-
-/** Static stand-in for the WebGL data-core until Phase 5. */
-function DataCorePlaceholder() {
-  return (
-    <svg viewBox="0 0 200 200" className="h-48 w-48" aria-label="Data core: raw data refined into insight">
-      <defs>
-        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="100" cy="100" r="70" fill="url(#coreGlow)" className="animate-core-pulse" />
-      <g className="origin-center" style={{ transformBox: "fill-box" }}>
-        <polygon points="100,30 160,100 100,170 40,100" fill="none" stroke="#8B5CF6" strokeWidth="1.5" />
-        <polygon points="100,55 140,100 100,145 60,100" fill="rgba(139,92,246,0.12)" stroke="#38BDF8" strokeWidth="1" />
-      </g>
-      <ellipse cx="100" cy="100" rx="85" ry="32" fill="none" stroke="rgba(140,120,255,0.25)" />
-      <circle cx="100" cy="100" r="5" fill="#38BDF8" />
-      <text x="100" y="192" textAnchor="middle" className="fill-text-lo font-mono" fontSize="9">
-        RAW → PYSPARK / JAVA → EMR → INSIGHT
-      </text>
-    </svg>
-  );
 }
