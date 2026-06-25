@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
-/** Soft sky glow that follows the cursor (desktop only, motion-aware). */
+/** Cyan glow that trails the cursor (desktop + motion only). */
 export function CursorGlow() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -28,36 +28,38 @@ export function CursorGlow() {
   return <div ref={ref} className="cursor-glow" aria-hidden />;
 }
 
-const FRAGMENTS = [
-  "{ \"raw\": true }",
-  "CSV,,null,,",
-  "UDF bottleneck",
-  "EMR: OVERLOAD",
-  "SELECT * FROM logs",
-  "pipeline: BROKEN",
-  "skew detected",
-  "OOM retry",
-  "cluster: 100%",
-  "JSON } } }",
-];
+const SHARDS = Array.from({ length: 14 }).map((_, i) => ({
+  left: (i * 67) % 96,
+  top: (i * 41 + 6) % 92,
+  size: 8 + (i % 4) * 6,
+  delay: (i % 6) * 1.4,
+  cyan: i % 2 === 0,
+}));
 
-/** Raw-world only: scattered, intentional data-chaos fragments. Never literal broken UI. */
-export function RawFragments() {
+/** Slow floating data shards (glass cubes) + faint code particles. */
+export function FloatingShards() {
+  const reduce = useReducedMotion();
   return (
-    <div className="raw-fragments" aria-hidden>
-      {FRAGMENTS.map((f, i) => (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
+      {SHARDS.map((s, i) => (
         <span
-          key={f}
-          className="absolute rounded border border-danger/30 bg-white/70 px-2 py-0.5 font-mono text-[10px] text-danger/80 shadow-sm animate-drift"
+          key={i}
+          className={`absolute rounded-[3px] border ${
+            s.cyan ? "border-cyan/25 bg-cyan/[0.04]" : "border-purple/25 bg-purple/[0.04]"
+          } ${reduce ? "" : "animate-drift"}`}
           style={{
-            left: `${(i * 53) % 90}%`,
-            top: `${(i * 37 + 8) % 88}%`,
-            animationDelay: `${i * 0.6}s`,
+            left: `${s.left}%`,
+            top: `${s.top}%`,
+            width: s.size,
+            height: s.size,
+            animationDelay: `${s.delay}s`,
+            transform: "rotate(12deg)",
           }}
-        >
-          {f}
-        </span>
+        />
       ))}
+      {/* light beams */}
+      <span className={`absolute -top-1/4 left-1/4 h-[150%] w-px bg-gradient-to-b from-transparent via-sky/20 to-transparent ${reduce ? "" : "animate-beam"}`} />
+      <span className={`absolute -top-1/4 right-1/3 h-[150%] w-px bg-gradient-to-b from-transparent via-purple/20 to-transparent ${reduce ? "" : "animate-beam"}`} style={{ animationDelay: "2s" }} />
     </div>
   );
 }

@@ -4,15 +4,16 @@ import type { ReactNode } from "react";
 interface RevealProps {
   children: ReactNode;
   index?: number;
+  y?: number;
   className?: string;
   as?: "div" | "li" | "section" | "span";
 }
 
-/** Cinematic reveal: opacity + 16px rise, weighty easing. Honors reduced-motion. */
-export function Reveal({ children, index = 0, className, as = "div" }: RevealProps) {
+/** Cinematic reveal with depth: opacity + rise, weighty easing. Motion-aware. */
+export function Reveal({ children, index = 0, y = 18, className, as = "div" }: RevealProps) {
   const reduce = useReducedMotion();
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 16 },
+    hidden: { opacity: 0, y: reduce ? 0 : y },
     show: {
       opacity: 1,
       y: 0,

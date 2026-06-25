@@ -1,39 +1,37 @@
-# DATA ASCENSION — Build Plan
+# SAHITHI.EXE — Build Plan
 
-Cinematic, recruiter-ready story portfolio for **Sahithi Velaga**, Data Engineer.
-Subtitle: *From Raw Data Chaos to Cloud Intelligence.*
-Bright sky-blue glass world · single direct page · 11 chapters · gaming-inspired HUD.
-Content single source of truth: [`src/content.ts`](src/content.ts).
+Semi-dark, gaming-inspired storytelling portfolio for **Sahithi Velaga** —
+**Data Engineer / Software Engineer**. Tagline: *Engineering faster data systems from
+complex raw data.* Content source of truth: [`src/content.ts`](src/content.ts).
 
-## Structure
-- [x] Sky-blue light theme tokens (one base + sky/cyan + gold for achievements)
-- [x] SkyGameNav (sticky glass, scroll-progress, active chapter, world switch, resume)
-- [x] Hero — "The Data Ascension Begins": HolographicProfileCard + floating badges + 6 stat cards
-- [x] Ch 01 — The Data Storm (scroll: chaos → ordered streams)
-- [x] Ch 02 — Code Transformation Gate (Python → PySpark → Java → production)
-- [x] Ch 03 — EMR Optimization Battle ★ (scroll-linked HP 100%→60%, −40% victory)
-- [x] Ch 04 — DevHub Command Center (8 modules)
-- [x] Ch 05 — Golden Record Factory (Raw → Oracle/ETL/IDQ/Talend → golden → BI)
-- [x] Ch 06 — AI Prediction Observatory (COVID forecasting, FB Prophet)
-- [x] Ch 07 — Business Intelligence Gallery (electronics sales analysis)
-- [x] Ch 08 — Customer Segmentation Lab (K-Means, WCSS, elbow)
-- [x] Ch 09 — Skill Tree of Intelligence (7 branches, XP)
-- [x] Ch 10 — Education Quest Log (degrees + AI-900 + coursework)
-- [x] Ch 11 — Recruiter Victory Room (Match Ready + all CTAs)
-- [x] World Switch (Raw / Intelligence) — labeled, intentional, default Intelligence
-- [x] Cursor glow, reveals, counters, hologram scan, boss HP — all reduced-motion aware
+## Sections (single page)
+- [x] Nav — sticky semi-dark glass, scroll progress, active section, resume (no world toggle)
+- [x] Hero — cinematic: holographic photo card + floating badges + grid floor + light beams
+- [x] 01 Story Path — 7-node engineering progression (Raw → Python → PySpark → Java → EMR → DevHub → BI)
+- [x] 02 Experian Performance Case Study — Before / Action / After, 40% counter, before/after chart (replaces "Cluster Load Beast")
+- [x] 03 PySpark + Java Engineering Lab — HUD modules
+- [x] 04 DevHub Product Experience — SaaS-style product screen
+- [x] 05 Golden Record Pipeline — Raw → Oracle/ETL/IDQ/Talend → golden → BI
+- [x] 06 Analytics Missions — 3 tilt project cards (Problem/Method/Output/Value)
+- [x] 07 Tech Constellation — interactive skill nodes + connecting lines, grid fallback
+- [x] 08 Credentials — degrees + AI-900 + coursework
+- [x] 09 Why Sahithi Stands Out — 4 HR cards + final CTA + photo
 
-## Quality bar
-- [x] One glass spec, sky-blue world, gold = achievements only
-- [x] `prefers-reduced-motion` honored (boss → static before/after, etc.)
-- [x] Semantic landmarks, skip link, keyboard nav, AA-minded contrast
-- [x] SEO meta + OG + favicon
-- [ ] Drop `public/sahithi-profile.jpg` and set `profile.photo` (placeholder card until then)
+## The 5 required changes
+- [x] Removed DevOps/cloud "Data Ascension" branding; positioned as Data Engineer / Software Engineer
+- [x] Removed "Cluster Load Beast" boss fight → professional Experian Performance Case Study
+- [x] New semi-dark palette + fonts (Space Grotesk / Manrope / JetBrains Mono)
+- [x] Professional gaming art: HUD panels, floating shards, neon grid, holographic card, cursor glow, constellation
+- [x] Full art-directed rebuild (not a recolor)
+
+## Quality
+- [x] One glass spec; gold = achievements; cyan/purple accents
+- [x] `prefers-reduced-motion` honored throughout
+- [x] Semantic landmarks, skip link, keyboard nav; SEO + OG + favicon
 - [ ] Real LinkedIn / GitHub URLs in `content.ts`
-- [ ] Optional: re-introduce subtle R3F 3D accent (deps installed, currently unused)
 
 ## Stack
 Vite · React · TypeScript · Tailwind · Framer Motion · lucide-react
-(R3F/three installed for optional subtle 3D; not currently imported.)
+(R3F/three installed but not currently imported.)
 
-> Previous iterations (Data Palace, Data Realm) remain in git history.
+> Earlier iterations (Data Palace, Data Realm, Data Ascension) remain in git history.

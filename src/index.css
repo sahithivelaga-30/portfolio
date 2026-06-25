@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --canvas: #f3f9ff;
-  --softsky: #e0f2fe;
-  --glass: rgba(255, 255, 255, 0.78);
-  --glass-edge: rgba(56, 189, 248, 0.28);
+  --bg: #07111f;
+  --darknavy: #0b1220;
+  --card: rgba(255, 255, 255, 0.06);
+  --edge: rgba(125, 211, 252, 0.22);
   --sky: #38bdf8;
   --cyan: #22d3ee;
-  --navy: #0f172a;
   --purple: #8b5cf6;
-  --gold: #d4af37;
-  color-scheme: light;
+  --gold: #f5c542;
+  --text-hi: #f8fafc;
+  --text-lo: #94a3b8;
+  color-scheme: dark;
 }
 
 @layer base {
@@ -21,14 +22,13 @@
     scroll-padding-top: 5.5rem;
   }
   body {
-    @apply bg-canvas text-text-lo font-sans antialiased;
-    font-feature-settings: "ss01", "cv01";
+    @apply bg-bg text-text-lo font-sans antialiased;
   }
   h1,
   h2,
   h3,
   h4 {
-    @apply text-navy font-display tracking-tight;
+    @apply text-text-hi font-display tracking-tight;
     text-wrap: balance;
   }
   :focus-visible {
@@ -37,61 +37,78 @@
     border-radius: 6px;
   }
   ::selection {
-    background: rgba(56, 189, 248, 0.25);
-    color: var(--navy);
+    background: rgba(56, 189, 248, 0.3);
+    color: var(--text-hi);
   }
 }
 
 @layer components {
-  /* The ONE glass spec — white translucent over the sky world */
+  /* The ONE glass spec */
   .glass {
-    @apply rounded-panel border bg-[var(--glass)] backdrop-blur-[16px];
-    border-color: var(--glass-edge);
-    box-shadow: 0 10px 40px rgba(56, 189, 248, 0.1), 0 2px 8px rgba(15, 23, 42, 0.04);
+    @apply rounded-panel border bg-card backdrop-blur-[16px];
+    border-color: var(--edge);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  }
+  /* HUD corner brackets */
+  .hud {
+    @apply relative;
+  }
+  .hud::before,
+  .hud::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(56, 189, 248, 0.55);
+    pointer-events: none;
+  }
+  .hud::before {
+    top: 10px;
+    left: 10px;
+    border-top: 1.5px solid;
+    border-left: 1.5px solid;
+  }
+  .hud::after {
+    bottom: 10px;
+    right: 10px;
+    border-bottom: 1.5px solid;
+    border-right: 1.5px solid;
   }
 }
 
 @layer utilities {
-  /* Bright sky world backdrop with soft clouds */
-  .bg-sky-world {
+  .bg-world {
     background:
-      radial-gradient(60rem 40rem at 80% -5%, rgba(56, 189, 248, 0.22), transparent 60%),
-      radial-gradient(50rem 32rem at 5% 8%, rgba(34, 211, 238, 0.16), transparent 55%),
-      radial-gradient(40rem 30rem at 50% 110%, rgba(139, 92, 246, 0.08), transparent 60%),
-      linear-gradient(180deg, #f3f9ff 0%, #e0f2fe 100%);
+      radial-gradient(60rem 40rem at 78% -8%, rgba(56, 189, 248, 0.16), transparent 60%),
+      radial-gradient(48rem 32rem at 6% 4%, rgba(139, 92, 246, 0.14), transparent 55%),
+      linear-gradient(180deg, #07111f 0%, #0b1220 100%);
   }
-  .text-sky-gradient {
-    background: linear-gradient(110deg, var(--sky) 10%, var(--cyan) 55%, var(--purple) 100%);
+  .text-grad {
+    background: linear-gradient(110deg, #f8fafc 18%, var(--sky) 60%, var(--purple) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+  /* neon grid floor */
+  .grid-floor {
+    background-image:
+      linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  }
 }
 
-/* Mouse-following ambient sky glow */
 .cursor-glow {
   position: fixed;
   z-index: 0;
-  width: 36rem;
-  height: 36rem;
+  width: 34rem;
+  height: 34rem;
   border-radius: 9999px;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 60%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12), transparent 60%);
   transform: translate(-50%, -50%);
-  transition: opacity 0.3s;
-}
-
-/* Raw-world overlay: scattered, intentional, never literally broken UI */
-.raw-fragments {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-[data-world="raw"] .raw-fragments {
-  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -76,7 +76,7 @@ export const profile: Profile = {
   location: "Arlington, TX",
   email: "sahithivelaga@gmail.com",
   phone: "(469) 653-5291",
-  tagline: "From raw data chaos to cloud intelligence.",
+  tagline: "Engineering faster data systems from complex raw data.",
   valueProp: "I turn raw data into scalable, cost-efficient cloud pipelines.",
   proofPoint: "40% reduction in AWS EMR cluster resource consumption.",
   photo: `${import.meta.env.BASE_URL}sahithi-profile.jpg`,
@@ -293,10 +293,10 @@ export const statCards: { value: string; label: string; accent?: boolean }[] = [
 /** Orbiting badges around the hero profile card. */
 export const floatingBadges: string[] = [
   "40% EMR Resource Reduction",
-  "PySpark Optimizer",
+  "PySpark Optimization",
   "Java Performance Testing",
-  "DevHub Builder",
-  "Cloud Data Engineer",
+  "DevHub Frontend",
+  "ETL Golden Records",
 ];
 
 export const profileTags: string[] = ["PySpark", "Java", "AWS EMR", "ETL", "DevHub", "Analytics"];
@@ -304,23 +304,23 @@ export const profileTags: string[] = ["PySpark", "Java", "AWS EMR", "ETL", "DevH
 /** The skill tree branches (Ch. 9) — proficiency, not invented metrics. */
 export const skillTree: { branch: string; xp: number; skills: string[] }[] = [
   { branch: "Data Engineering", xp: 92, skills: ["PySpark", "Scala", "Python", "Java", "SQL", "ETL"] },
-  { branch: "Cloud", xp: 88, skills: ["AWS EMR", "AWS S3", "EC2", "IAM", "Azure"] },
+  { branch: "Data Platforms", xp: 88, skills: ["AWS EMR", "AWS S3", "EC2", "IAM", "Azure"] },
   { branch: "Databases", xp: 84, skills: ["Oracle", "MySQL", "PostgreSQL", "MongoDB"] },
   { branch: "Analytics", xp: 82, skills: ["Tableau", "Pandas", "NumPy", "SciPy", "Matplotlib", "Seaborn"] },
   { branch: "AI / ML", xp: 78, skills: ["PyTorch", "Machine Learning", "FB Prophet", "K-Means", "Data Mining"] },
-  { branch: "Developer Platform", xp: 80, skills: ["React", "Backstage", "Figma", "Wayfarer", "Node.js"] },
-  { branch: "DevOps", xp: 80, skills: ["Docker", "Jenkins", "Git", "Bitbucket", "Maven"] },
+  { branch: "Frontend / Platform", xp: 80, skills: ["React", "Backstage", "Figma", "Wayfarer", "Node.js"] },
+  { branch: "Engineering Tools", xp: 80, skills: ["Docker", "Jenkins", "Git", "Bitbucket", "Maven"] },
 ];
 
 /** Top nav anchors. */
 export const navItems: { id: string; label: string }[] = [
-  { id: "intro", label: "Intro" },
-  { id: "storm", label: "Story" },
-  { id: "battle", label: "Experian" },
+  { id: "home", label: "Home" },
+  { id: "story", label: "Story" },
+  { id: "experience", label: "Experience" },
   { id: "devhub", label: "DevHub" },
-  { id: "observatory", label: "Projects" },
+  { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
+  { id: "credentials", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ];
 

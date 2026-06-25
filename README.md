@@ -1,32 +1,31 @@
-# Data Ascension
+# SAHITHI.EXE
 
-A cinematic, recruiter-ready story portfolio for **Sahithi Velaga**, Data Engineer —
-*From Raw Data Chaos to Cloud Intelligence.*
+A semi-dark, gaming-inspired storytelling portfolio for **Sahithi Velaga** —
+**Data Engineer / Software Engineer**. *Engineering faster data systems from complex raw data.*
 
-A bright **sky-blue glass world** with a gaming-inspired HUD that walks a recruiter
-through 11 chapters: the data storm, the PySpark/Java code gate, the **EMR optimization
-boss battle** (−40% resources), the DevHub command center, the golden-record factory,
-the AI prediction observatory, the BI gallery, the segmentation lab, the skill tree,
-the education quest log, and the recruiter victory room.
+A premium game-interface feel (HUD panels, holographic photo card, neon grid, floating data
+shards, cursor glow) kept fully professional for recruiters. Single page, art-directed.
+
+## Sections
+
+Hero → Story Path → **Experian Performance Case Study** (Before / Action / After, 40% metric) →
+PySpark + Java Engineering Lab → DevHub Product Experience → Golden Record Pipeline →
+Analytics Missions → Tech Constellation (interactive skills) → Credentials → Why Sahithi Stands Out.
 
 ## Stack
 
 - **Vite + React + TypeScript**
-- **Tailwind CSS** — sky-blue tokens (one glass spec; gold reserved for achievements)
-- **Framer Motion** — scroll reveals, scroll-linked boss HP, counters, hologram scan
-- **lucide-react** icons; charts/visuals are inline SVG
+- **Tailwind CSS** — semi-dark palette (sky/cyan/purple; gold = achievements)
+- **Framer Motion** — scroll reveals, animated metrics, before/after bars, tilt cards
+- **lucide-react** icons; visuals are inline SVG
+- Fonts: **Space Grotesk** (display) · **Manrope** (body) · **JetBrains Mono** (labels)
 - React Three Fiber + three are installed for an optional subtle 3D accent (not currently imported)
 
-## Develop
+## Develop / build
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-```
-
-## Build & preview
-
-```bash
 npm run build    # type-check + production build to /dist
 npm run preview
 ```
@@ -35,50 +34,35 @@ npm run preview
 
 ```
 src/
-  content.ts                 # SINGLE SOURCE OF TRUTH — all resume data, typed
-  App.tsx                    # single-page; nav + hero + 11 chapters + footer
-  index.css                  # sky-blue tokens, glass spec, raw-world overlay, reduced-motion
-  context/WorldContext.tsx   # Raw / Intelligence world switch
+  content.ts                 # SINGLE SOURCE OF TRUTH — typed resume data
+  App.tsx                    # single page: nav + 10 sections + footer
+  index.css                  # semi-dark tokens, glass + HUD spec, grid floor, reduced-motion
   components/
-    SkyGameNav.tsx           # sticky glass nav + scroll progress + world switch
-    WorldSwitchToggle.tsx
-    Ambient.tsx              # cursor glow + raw-world fragments
-    HeroProfileIntro.tsx     # "The Data Ascension Begins"
-    HolographicProfileCard.tsx
-    ui/                      # GlassCard, ChapterHeader/Takeaway, AchievementBadge,
-                             # FloatingBadge, Reveal, Counter
-    chapters/                # the 11 chapters, Data Storm → Recruiter Victory Room
+    Nav.tsx                  # sticky glass nav + scroll progress
+    Ambient.tsx              # cursor glow + floating data shards + light beams
+    HolographicCard.tsx      # photo card (placeholder-safe, 3D tilt, scan line, HUD brackets)
+    ui/                      # GlassCard, SectionHeader/Takeaway, Counter, Reveal, AchievementBadge/Pill
+    sections/                # Hero, StoryPath, CaseStudy, EngineeringLab, DevHub, GoldenRecord,
+                             # Projects, SkillsConstellation, Credentials, HRImpact
 ```
-
-## Special features
-
-- **World Switch (Raw / Intelligence)** in the nav — flips the world between intentional
-  data-chaos fragments and the clean intelligence view. Default is Intelligence; Raw is a
-  clearly-labeled stylized overlay, never literally broken UI.
-- **EMR Boss Battle** — scroll-linked: the Cluster Load Beast's HP drains 100% → 60% as
-  three tools land, ending on the −40% victory. Reduced-motion gets a static before/after.
 
 ## Before you ship
 
-1. **Resume** — `public/resume.pdf` is wired to the Download buttons (base-aware).
-2. **Photo** — drop `public/sahithi-profile.jpg` and set `profile.photo` in
-   [`src/content.ts`](src/content.ts) to `"/portfolio/sahithi-profile.jpg"`. Until then a
-   premium placeholder card renders (never a broken image).
-3. **Social links** — add real LinkedIn / GitHub URLs in `profile.links`.
+1. **Resume** — `public/resume.pdf` wired to Download buttons (base-aware).
+2. **Photo** — `public/sahithi-profile.jpg` is in place and rendered in the hero + final cards.
+3. **Social links** — add real LinkedIn / GitHub URLs in `profile.links` (`src/content.ts`).
 
 ## Deploy (GitHub Pages)
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishes to Pages.
-Vite `base` is `/portfolio/`, so the site serves at
-**https://sahithivelaga-30.github.io/portfolio/**. Enable once under
-**Settings → Pages → Source → GitHub Actions**.
+Pushing to `main` runs `.github/workflows/deploy.yml` (build → Pages). Vite `base` is
+`/portfolio/`, so the site serves at **https://sahithivelaga-30.github.io/portfolio/**.
+Enable once under **Settings → Pages → Source → GitHub Actions**.
 
 ## Principles
 
-- **Premium = restraint + craft.** One glass spec, weighty `cubic-bezier(0.22,1,0.36,1)` motion.
-- **Recruiter-first.** Every chapter answers: what problem, what Sahithi did, what tool, what
-  changed, why HR should care.
+- **Premium = restraint + craft.** One glass spec; weighty `cubic-bezier(0.22,1,0.36,1)` motion.
+- **Recruiter-first, data-engineering focused.** Every section: problem → action → result → why HR cares.
 - **Accessible.** Semantic landmarks, keyboard nav, focus states, `prefers-reduced-motion`.
 - **Honest.** Titles and metrics are exactly as provided.
 
-> Earlier iterations (Data Palace, Data Realm) remain in git history.
+> Earlier iterations (Data Palace, Data Realm, Data Ascension) remain in git history.
