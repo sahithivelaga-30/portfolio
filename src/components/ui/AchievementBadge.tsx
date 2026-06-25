@@ -2,9 +2,11 @@ import { Trophy } from "lucide-react";
 
 export function AchievementBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2.5 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold shadow-[0_0_22px_rgba(245,197,66,0.18)]">
-      <Trophy size={15} />
-      {label}
+    <span className="gold-frame inline-flex !rounded-full shadow-[0_0_22px_rgba(245,197,66,0.22)]">
+      <span className="inline-flex items-center gap-2.5 rounded-full bg-darknavy px-4 py-2 text-sm font-semibold text-goldhi">
+        <Trophy size={15} />
+        {label}
+      </span>
     </span>
   );
 }

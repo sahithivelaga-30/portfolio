@@ -4,19 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#07111F",
-        darknavy: "#0B1220",
-        card: "rgba(255,255,255,0.06)",
-        edge: "rgba(125,211,252,0.22)",
+        // Sky-blue theme (deep, glowing) with dark-golden glass edges
+        bg: "#061A2E",
+        darknavy: "#0A2540",
+        card: "rgba(255,255,255,0.05)",
+        edge: "rgba(201,162,77,0.42)", // dark golden glass edge
         sky: "#38BDF8",
         cyan: "#22D3EE",
         purple: "#8B5CF6",
-        gold: "#F5C542",
+        gold: "#D4AF37", // dark golden
+        goldhi: "#F5C542", // bright gold (achievements / shimmer)
         success: "#10B981",
         danger: "#EF4444",
         text: {
           hi: "#F8FAFC",
-          lo: "#94A3B8",
+          lo: "#A7C0D8",
         },
       },
       fontFamily: {
@@ -56,6 +58,10 @@ export default {
           "50%": { opacity: "0.4" },
         },
         "grid-pan": { "0%": { backgroundPosition: "0 0" }, "100%": { backgroundPosition: "0 40px" } },
+        shimmer: { "0%": { backgroundPosition: "0% 50%" }, "100%": { backgroundPosition: "200% 50%" } },
+        "stream-down": { "0%": { transform: "translateY(-100%)" }, "100%": { transform: "translateY(400%)" } },
+        "sweep": { "0%": { transform: "translateY(-10vh)", opacity: "0" }, "10%,90%": { opacity: "0.5" }, "100%": { transform: "translateY(100vh)", opacity: "0" } },
+        "ring-spin": { to: { transform: "rotate(360deg)" } },
       },
       animation: {
         "scan-line": "scan-line 3.5s ease-in-out infinite",
@@ -65,6 +71,10 @@ export default {
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         beam: "beam 7s ease-in-out infinite",
         "grid-pan": "grid-pan 8s linear infinite",
+        shimmer: "shimmer 5s linear infinite",
+        "stream-down": "stream-down 4s linear infinite",
+        sweep: "sweep 9s ease-in-out infinite",
+        "ring-spin": "ring-spin 14s linear infinite",
       },
     },
   },

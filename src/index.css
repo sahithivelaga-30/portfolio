@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg: #07111f;
-  --darknavy: #0b1220;
-  --card: rgba(255, 255, 255, 0.06);
-  --edge: rgba(125, 211, 252, 0.22);
+  --bg: #061a2e;
+  --darknavy: #0a2540;
+  --card: rgba(255, 255, 255, 0.05);
+  --edge: rgba(201, 162, 77, 0.42); /* dark golden glass edge */
+  --gold: #d4af37;
+  --goldhi: #f5c542;
   --sky: #38bdf8;
   --cyan: #22d3ee;
   --purple: #8b5cf6;
-  --gold: #f5c542;
   --text-hi: #f8fafc;
-  --text-lo: #94a3b8;
+  --text-lo: #a7c0d8;
   color-scheme: dark;
 }
 
@@ -32,7 +33,7 @@
     text-wrap: balance;
   }
   :focus-visible {
-    outline: 2px solid var(--sky);
+    outline: 2px solid var(--gold);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -43,13 +44,16 @@
 }
 
 @layer components {
-  /* The ONE glass spec */
+  /* Glassy finish with a dark-golden edge — the ONE glass spec */
   .glass {
     @apply rounded-panel border bg-card backdrop-blur-[16px];
     border-color: var(--edge);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 0 0 1px rgba(212, 175, 55, 0.06);
   }
-  /* HUD corner brackets */
+  /* HUD corner brackets — golden */
   .hud {
     @apply relative;
   }
@@ -59,7 +63,7 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: rgba(56, 189, 248, 0.55);
+    border-color: rgba(212, 175, 55, 0.65);
     pointer-events: none;
   }
   .hud::before {
@@ -74,30 +78,71 @@
     border-bottom: 1.5px solid;
     border-right: 1.5px solid;
   }
+
+  /* Animated dark-golden shimmer frame (gaming highlight border) */
+  .gold-frame {
+    position: relative;
+    border-radius: 1.2rem;
+    padding: 1.5px;
+    background: linear-gradient(
+      120deg,
+      rgba(212, 175, 55, 0.85),
+      rgba(56, 189, 248, 0.35),
+      rgba(245, 197, 66, 0.85),
+      rgba(56, 189, 248, 0.35),
+      rgba(212, 175, 55, 0.85)
+    );
+    background-size: 220% 220%;
+    animation: shimmer 5s linear infinite;
+  }
 }
 
 @layer utilities {
+  /* Sky-blue glowing world */
   .bg-world {
     background:
-      radial-gradient(60rem 40rem at 78% -8%, rgba(56, 189, 248, 0.16), transparent 60%),
-      radial-gradient(48rem 32rem at 6% 4%, rgba(139, 92, 246, 0.14), transparent 55%),
-      linear-gradient(180deg, #07111f 0%, #0b1220 100%);
+      radial-gradient(60rem 42rem at 75% -6%, rgba(56, 189, 248, 0.28), transparent 60%),
+      radial-gradient(46rem 32rem at 8% 4%, rgba(34, 211, 238, 0.18), transparent 55%),
+      radial-gradient(40rem 30rem at 50% 108%, rgba(212, 175, 55, 0.08), transparent 60%),
+      linear-gradient(180deg, #061a2e 0%, #0a2540 100%);
   }
   .text-grad {
-    background: linear-gradient(110deg, #f8fafc 18%, var(--sky) 60%, var(--purple) 100%);
+    background: linear-gradient(110deg, #f8fafc 14%, var(--sky) 50%, var(--goldhi) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  /* neon grid floor */
+  .text-gold-grad {
+    background: linear-gradient(110deg, var(--goldhi) 10%, var(--gold) 50%, var(--sky) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   .grid-floor {
     background-image:
-      linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+      linear-gradient(rgba(56, 189, 248, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.16) 1px, transparent 1px);
     background-size: 40px 40px;
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
     mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
   }
+}
+
+/* CRT/HUD scanlines overlay (gaming screen feel) — very subtle, fixed */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(56, 189, 248, 0.04) 0px,
+    rgba(56, 189, 248, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.5;
 }
 
 .cursor-glow {
@@ -107,7 +152,7 @@
   height: 34rem;
   border-radius: 9999px;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12), transparent 60%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.14), transparent 60%);
   transform: translate(-50%, -50%);
 }
 

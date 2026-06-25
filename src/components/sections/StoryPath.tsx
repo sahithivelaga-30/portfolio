@@ -38,14 +38,22 @@ export function StoryPath() {
                   className="group flex items-center gap-3 lg:flex-col lg:gap-2"
                   aria-pressed={active === i}
                 >
-                  <span
-                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-full border font-mono text-xs transition-all duration-300 ${
-                      active === i
-                        ? "border-sky bg-sky/15 text-sky shadow-glow"
-                        : "border-edge bg-card text-text-lo group-hover:border-sky/50"
-                    }`}
-                  >
-                    {s.n}
+                  <span className="relative grid h-11 w-11 shrink-0 place-items-center">
+                    {active === i && (
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 animate-ring-spin rounded-full border border-dashed border-gold/60"
+                      />
+                    )}
+                    <span
+                      className={`grid h-11 w-11 place-items-center rounded-full border font-mono text-xs transition-all duration-300 ${
+                        active === i
+                          ? "border-sky bg-sky/15 text-sky shadow-glow"
+                          : "border-edge bg-card text-text-lo group-hover:border-gold/50"
+                      }`}
+                    >
+                      {s.n}
+                    </span>
                   </span>
                   <span
                     className={`text-left text-sm font-medium transition-colors lg:text-center ${

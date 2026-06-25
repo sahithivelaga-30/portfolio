@@ -29,8 +29,8 @@ export function HolographicCard() {
       style={{ transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
       className="relative w-full max-w-[20rem]"
     >
-      <div className="rounded-[1.3rem] bg-gradient-to-br from-cyan/50 via-sky/30 to-purple/40 p-[1.5px] shadow-glow-purple">
-        <div className="relative overflow-hidden rounded-[1.2rem] bg-darknavy p-3">
+      <div className="gold-frame shadow-glow">
+        <div className="relative overflow-hidden rounded-[1.1rem] bg-darknavy p-3">
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-edge bg-bg">
             {showImg ? (
               <img

@@ -37,17 +37,28 @@ export function CaseStudy() {
       {/* Big metric + before/after chart */}
       <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.4fr]">
         <Reveal>
-          <GlassCard hud className="flex flex-col items-center justify-center p-8 text-center">
-            <span className="font-display text-7xl font-bold text-grad sm:text-8xl">
-              <Counter value={40} suffix="%" />
-            </span>
-            <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-text-lo">
-              EMR resource consumption reduced
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-medium text-success">
-              <TrendingDown size={13} /> lighter, faster, more scalable
-            </span>
-          </GlassCard>
+          <div className="gold-frame h-full shadow-glow">
+            <div className="hud relative flex h-full flex-col items-center justify-center overflow-hidden rounded-[1.1rem] bg-darknavy p-8 text-center">
+              {/* spinning HUD ring behind the metric */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute h-56 w-56 animate-ring-spin rounded-full border border-dashed border-gold/25"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute h-72 w-72 rounded-full border border-sky/10"
+              />
+              <span className="relative font-display text-7xl font-bold text-gold-grad sm:text-8xl">
+                <Counter value={40} suffix="%" />
+              </span>
+              <p className="relative mt-2 font-mono text-xs uppercase tracking-[0.18em] text-text-lo">
+                EMR resource consumption reduced
+              </p>
+              <span className="relative mt-4 inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-medium text-success">
+                <TrendingDown size={13} /> lighter, faster, more scalable
+              </span>
+            </div>
+          </div>
         </Reveal>
 
         <Reveal index={1}>

@@ -36,16 +36,28 @@ const SHARDS = Array.from({ length: 14 }).map((_, i) => ({
   cyan: i % 2 === 0,
 }));
 
-/** Slow floating data shards (glass cubes) + faint code particles. */
+const STREAMS = [12, 30, 52, 68, 84];
+
+/** Slow floating data shards + flowing data streams + light beams. */
 export function FloatingShards() {
   const reduce = useReducedMotion();
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
+      {/* flowing vertical data streams (gaming "matrix"-lite, very subtle) */}
+      {!reduce &&
+        STREAMS.map((left, i) => (
+          <span
+            key={`st-${i}`}
+            className="absolute top-0 h-24 w-px animate-stream-down bg-gradient-to-b from-transparent via-sky/40 to-transparent"
+            style={{ left: `${left}%`, animationDelay: `${i * 0.8}s`, animationDuration: `${4 + (i % 3)}s` }}
+          />
+        ))}
+
       {SHARDS.map((s, i) => (
         <span
           key={i}
           className={`absolute rounded-[3px] border ${
-            s.cyan ? "border-cyan/25 bg-cyan/[0.04]" : "border-purple/25 bg-purple/[0.04]"
+            s.cyan ? "border-cyan/25 bg-cyan/[0.04]" : "border-gold/30 bg-gold/[0.04]"
           } ${reduce ? "" : "animate-drift"}`}
           style={{
             left: `${s.left}%`,
@@ -57,9 +69,25 @@ export function FloatingShards() {
           }}
         />
       ))}
+
       {/* light beams */}
       <span className={`absolute -top-1/4 left-1/4 h-[150%] w-px bg-gradient-to-b from-transparent via-sky/20 to-transparent ${reduce ? "" : "animate-beam"}`} />
-      <span className={`absolute -top-1/4 right-1/3 h-[150%] w-px bg-gradient-to-b from-transparent via-purple/20 to-transparent ${reduce ? "" : "animate-beam"}`} style={{ animationDelay: "2s" }} />
+      <span className={`absolute -top-1/4 right-1/3 h-[150%] w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent ${reduce ? "" : "animate-beam"}`} style={{ animationDelay: "2s" }} />
     </div>
+  );
+}
+
+/** Fixed CRT/HUD scanline overlay + a slow golden sweep band. */
+export function Scanlines() {
+  const reduce = useReducedMotion();
+  return (
+    <>
+      <div className="scanlines" aria-hidden />
+      {!reduce && (
+        <div className="pointer-events-none fixed inset-0 z-[41] overflow-hidden" aria-hidden>
+          <span className="absolute inset-x-0 top-0 h-24 animate-sweep bg-gradient-to-b from-transparent via-gold/[0.07] to-transparent" />
+        </div>
+      )}
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { CursorGlow, FloatingShards } from "./components/Ambient";
+import { CursorGlow, FloatingShards, Scanlines } from "./components/Ambient";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/sections/Hero";
 import { StoryPath } from "./components/sections/StoryPath";
@@ -17,6 +17,7 @@ export default function App() {
     <div className="relative min-h-screen overflow-x-clip bg-world">
       <CursorGlow />
       <FloatingShards />
+      <Scanlines />
 
       <a
         href="#main"
