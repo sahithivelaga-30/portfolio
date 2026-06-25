@@ -1,27 +1,14 @@
-import {
-  Boxes,
-  FileText,
-  GitBranch,
-  LayoutGrid,
-  Radio,
-  Rocket,
-  Search,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { Boxes, Figma, Layers, Sparkles, type LucideIcon } from "lucide-react";
 import { SectionHeader, Takeaway } from "../ui/SectionHeader";
 import { GlassCard } from "../ui/GlassCard";
 import { Reveal } from "../ui/Reveal";
 
+// Only what the résumé states: Figma designs · Backstage + Wayfarer components · developer experience.
 const MODULES: { name: string; detail: string; icon: LucideIcon }[] = [
-  { name: "Service Catalog", detail: "Every service, owned & documented", icon: Boxes },
-  { name: "API Docs", detail: "TechDocs rendered inline", icon: FileText },
-  { name: "Developer Search", detail: "Find anything, instantly", icon: Search },
-  { name: "Team Ownership", detail: "Teams mapped to systems", icon: Users },
-  { name: "Monitoring", detail: "Signals & health at a glance", icon: Radio },
-  { name: "Deployment Status", detail: "Pipelines, live", icon: Rocket },
-  { name: "Tools", detail: "Scaffolds & templates", icon: GitBranch },
-  { name: "Resource Center", detail: "Guides & onboarding", icon: LayoutGrid },
+  { name: "Figma Designs", detail: "Frontend built from Figma designs", icon: Figma },
+  { name: "Backstage", detail: "Integrated Backstage components", icon: Boxes },
+  { name: "Wayfarer", detail: "Integrated Wayfarer components", icon: Layers },
+  { name: "Developer Experience", detail: "Modern and intuitive", icon: Sparkles },
 ];
 
 export function DevHub() {
@@ -51,7 +38,7 @@ export function DevHub() {
             {MODULES.map((m) => (
               <div
                 key={m.name}
-                className="group bg-darknavy p-5 transition hover:bg-white/[0.03]"
+                className="group bg-darknavy p-5 transition hover:bg-sky/[0.06]"
               >
                 <div className="mb-2 inline-flex rounded-lg bg-sky/12 p-2 text-sky transition group-hover:bg-sky/20">
                   <m.icon size={16} />

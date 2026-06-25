@@ -14,12 +14,23 @@ const CLOUDS = [
   { top: 44, w: 210, h: 58, dur: 80, delay: -20, op: 0.65 },
 ];
 
-const BLOCKS = [
-  { left: 10, top: 24, size: 64, r: -8, delay: 0 },
-  { left: 82, top: 18, size: 86, r: 10, delay: -2 },
-  { left: 70, top: 52, size: 52, r: -4, delay: -4 },
-  { left: 24, top: 60, size: 44, r: 6, delay: -1 },
-  { left: 90, top: 64, size: 60, r: -10, delay: -3 },
+// Career keywords / symbols (all from the résumé) drifting in the background.
+const KEYWORDS = [
+  { t: "PySpark", left: 8, top: 22, size: 17, gold: true, delay: 0 },
+  { t: "Java", left: 86, top: 16, size: 16, gold: false, delay: -2 },
+  { t: "AWS EMR", left: 72, top: 40, size: 15, gold: true, delay: -4 },
+  { t: "ETL", left: 20, top: 54, size: 16, gold: false, delay: -1 },
+  { t: "SQL", left: 91, top: 58, size: 15, gold: true, delay: -3 },
+  { t: "Scala", left: 12, top: 70, size: 14, gold: false, delay: -5 },
+  { t: "K-Means", left: 60, top: 66, size: 14, gold: false, delay: -2.5 },
+  { t: "FB Prophet", left: 33, top: 30, size: 14, gold: true, delay: -1.5 },
+  { t: "Talend", left: 80, top: 72, size: 14, gold: false, delay: -3.5 },
+  { t: "Tableau", left: 46, top: 14, size: 14, gold: true, delay: -0.8 },
+  { t: "{ }", left: 4, top: 44, size: 22, gold: false, delay: -2.2 },
+  { t: "</>", left: 64, top: 24, size: 20, gold: true, delay: -4.4 },
+  { t: "df.groupBy()", left: 26, top: 84, size: 13, gold: false, delay: -1.2 },
+  { t: "SELECT *", left: 70, top: 86, size: 13, gold: true, delay: -3.2 },
+  { t: "Σ", left: 50, top: 50, size: 26, gold: false, delay: -2.8 },
 ];
 
 export function SkyWorld() {
@@ -41,34 +52,28 @@ export function SkyWorld() {
         />
       ))}
 
-      {/* floating voxel blocks */}
-      {BLOCKS.map((b, i) => (
-        <div
-          key={`b-${i}`}
-          className="absolute animate-block-bob"
-          style={{ left: `${b.left}%`, top: `${b.top}%`, ["--r" as string]: `${b.r}deg`, animationDelay: `${b.delay}s` }}
+      {/* floating career keywords / symbols */}
+      {KEYWORDS.map((k, i) => (
+        <span
+          key={`k-${i}`}
+          className={`absolute animate-block-bob select-none font-mono font-medium ${
+            k.gold ? "text-goldhi/35" : "text-sky/35"
+          }`}
+          style={{
+            left: `${k.left}%`,
+            top: `${k.top}%`,
+            fontSize: k.size,
+            ["--r" as string]: "0deg",
+            animationDelay: `${k.delay}s`,
+          }}
         >
-          <IsoCube size={b.size} />
-        </div>
+          {k.t}
+        </span>
       ))}
 
-      {/* neon city skyline */}
+      {/* daytime city skyline */}
       <Skyline />
     </div>
-  );
-}
-
-function IsoCube({ size }: { size: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 100 112" style={{ filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.35))" }}>
-      {/* top */}
-      <polygon points="50,6 92,30 50,54 8,30" fill="#3DA9E8" stroke="rgba(212,175,55,0.7)" strokeWidth="1.5" opacity="0.85" />
-      {/* left */}
-      <polygon points="8,30 50,54 50,104 8,80" fill="#15507F" stroke="rgba(212,175,55,0.5)" strokeWidth="1.5" opacity="0.8" />
-      {/* right */}
-      <polygon points="92,30 50,54 50,104 92,80" fill="#0C3357" stroke="rgba(212,175,55,0.5)" strokeWidth="1.5" opacity="0.8" />
-      <circle cx="50" cy="30" r="3" fill="#22D3EE" />
-    </svg>
   );
 }
 

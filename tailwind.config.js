@@ -4,21 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light sky-blue theme, dark fonts, rich dark-golden glass edges
-        bg: "#EAF5FF",
+        // Sky-blue theme (richer, less washed-out), dark fonts, gold glass edges
+        bg: "#CFE7FB",
         darknavy: "#FFFFFF", // light panel fill (legacy name)
-        card: "rgba(255,255,255,0.62)",
-        edge: "rgba(184,142,47,0.45)", // dark-golden glass edge
-        sky: "#2E8FD6",
-        cyan: "#0EA5C4",
-        purple: "#7C5CD6",
-        gold: "#9A7B18", // deep gold
-        goldhi: "#B8860B", // rich gold (readable on light)
-        success: "#0F9D6B",
-        danger: "#DC2626",
+        card: "rgba(255,255,255,0.66)",
+        edge: "rgba(176,134,40,0.5)", // dark-golden glass edge
+        sky: "#1E78C2",
+        cyan: "#0E97B8",
+        purple: "#6D4FCB",
+        gold: "#8A6D14", // deep gold
+        goldhi: "#A87E0E", // rich gold (readable on sky blue)
+        success: "#0C8A5E",
+        danger: "#CA2A2A",
         text: {
-          hi: "#0B2540", // deep navy headings
-          lo: "#46627E", // muted slate-blue body
+          hi: "#0A2238", // deep navy headings
+          lo: "#33506E", // slate-blue body (readable on sky)
         },
       },
       fontFamily: {

@@ -256,12 +256,13 @@ export const certifications: Certification[] = [
 
 export const coursework: string[] = [
   "Cloud Computing & Big Data",
+  "Data Mining",
   "Distributed Systems",
   "Machine Learning",
-  "Artificial Intelligence",
+  "Data Analysis & Modeling Techniques",
   "Computer Vision",
-  "Data Mining",
-  "Design & Analysis of Algorithms",
+  "Design and Analysis of Algorithms",
+  "Artificial Intelligence",
 ];
 
 export interface Badge {

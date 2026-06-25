@@ -5,10 +5,10 @@ import { Pill } from "../ui/AchievementBadge";
 import { Reveal } from "../ui/Reveal";
 
 const MODULES = [
-  { icon: Binary, name: "Python UDF Module", detail: "Filters, attributes & UDFs enter the lab.", tag: "input" },
-  { icon: Boxes, name: "PySpark Distributed Engine", detail: "Logic splits into parallel streams at scale.", tag: "scale" },
-  { icon: Cpu, name: "Java Benchmark Module", detail: "Comparative performance testing for production.", tag: "benchmark" },
-  { icon: PackageCheck, name: "Production-Ready Output", detail: "Clean, structured, efficient data.", tag: "output" },
+  { icon: Binary, name: "Python UDFs", detail: "Filters, attributes and Python UDFs.", tag: "input" },
+  { icon: Boxes, name: "PySpark", detail: "Migrated for optimized, distributed processing.", tag: "scale" },
+  { icon: Cpu, name: "Java", detail: "Comparative performance testing.", tag: "benchmark" },
+  { icon: PackageCheck, name: "Production-ready stack", detail: "Most efficient stack selected.", tag: "output" },
 ];
 
 export function EngineeringLab() {

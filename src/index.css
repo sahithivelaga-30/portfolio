@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg: #eaf5ff;
+  --bg: #cfe7fb;
   --panel: #ffffff;
-  --card: rgba(255, 255, 255, 0.62);
-  --edge: rgba(184, 142, 47, 0.45);
-  --gold: #9a7b18;
-  --goldhi: #b8860b;
-  --sky: #2e8fd6;
-  --cyan: #0ea5c4;
-  --purple: #7c5cd6;
-  --text-hi: #0b2540;
-  --text-lo: #46627e;
+  --card: rgba(255, 255, 255, 0.66);
+  --edge: rgba(176, 134, 40, 0.5);
+  --gold: #8a6d14;
+  --goldhi: #a87e0e;
+  --sky: #1e78c2;
+  --cyan: #0e97b8;
+  --purple: #6d4fcb;
+  --text-hi: #0a2238;
+  --text-lo: #33506e;
   color-scheme: light;
 }
 
@@ -97,11 +97,11 @@
 }
 
 @layer utilities {
-  /* Light sky-blue daytime gradient */
+  /* Richer sky-blue daytime gradient (less washed-out, more blue) */
   .bg-world {
     background:
-      radial-gradient(50rem 30rem at 50% 118%, rgba(184, 142, 47, 0.08), transparent 60%),
-      linear-gradient(180deg, #f4fbff 0%, #d6ecff 46%, #bfe2ff 100%);
+      radial-gradient(50rem 30rem at 50% 120%, rgba(176, 134, 40, 0.1), transparent 60%),
+      linear-gradient(180deg, #dcefff 0%, #a8d6f7 44%, #79b9ef 100%);
   }
   .text-grad {
     background: linear-gradient(110deg, #0b2540 12%, #2e8fd6 52%, #b8860b 100%);

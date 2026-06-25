@@ -22,8 +22,8 @@ export function TechTicker() {
           ))}
         </div>
         {/* fade edges */}
-        <span className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#eaf5ff] to-transparent" />
-        <span className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#eaf5ff] to-transparent" />
+        <span className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/70 to-transparent" />
+        <span className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/70 to-transparent" />
       </div>
     </div>
   );
