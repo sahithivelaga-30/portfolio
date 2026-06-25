@@ -5,6 +5,14 @@ import { MonoLabel } from "./ui/MonoLabel";
 import { MissionCard } from "./ui/MissionCard";
 import { Reveal } from "./ui/Reveal";
 import { ProfileCard } from "./ProfileCard";
+import { Engine } from "./realm/Engine";
+import { Boss } from "./realm/Boss";
+import { DevHubCenter } from "./realm/DevHubCenter";
+import { Foundry } from "./realm/Foundry";
+import { Research } from "./realm/Research";
+import { SkillTree } from "./realm/SkillTree";
+import { Archives } from "./realm/Archives";
+import { Victory } from "./realm/Victory";
 import type { View } from "../App";
 import { missions, profile } from "../content";
 
@@ -69,8 +77,7 @@ export function Realm({ onNavigate }: { onNavigate: (v: View) => void }) {
           <MonoLabel tone="accent">QUEST MAP</MonoLabel>
           <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Choose your path</h2>
           <p className="mt-3 text-text-lo">
-            Ten missions across three acts. Jump anywhere — nothing is gated. (Deeper missions are
-            under construction; the full cinematic build lands in upcoming phases.)
+            Ten missions across three acts. Jump anywhere — nothing is gated.
           </p>
         </Reveal>
 
@@ -102,6 +109,18 @@ export function Realm({ onNavigate }: { onNavigate: (v: View) => void }) {
           </div>
         </Reveal>
       </section>
+
+      {/* ACT II — The Trials */}
+      <Engine />
+      <Boss />
+      <DevHubCenter />
+      <Foundry />
+      <Research />
+
+      {/* ACT III — Mastery & the Offer */}
+      <SkillTree />
+      <Archives />
+      <Victory />
     </main>
   );
 }
