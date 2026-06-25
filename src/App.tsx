@@ -1,4 +1,5 @@
-import { CursorGlow, FloatingShards, Scanlines } from "./components/Ambient";
+import { CursorGlow } from "./components/Ambient";
+import { SkyWorld } from "./components/SkyWorld";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/sections/Hero";
 import { StoryPath } from "./components/sections/StoryPath";
@@ -15,9 +16,8 @@ import { profile } from "./content";
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-clip bg-world">
+      <SkyWorld />
       <CursorGlow />
-      <FloatingShards />
-      <Scanlines />
 
       <a
         href="#main"

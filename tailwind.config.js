@@ -62,6 +62,15 @@ export default {
         "stream-down": { "0%": { transform: "translateY(-100%)" }, "100%": { transform: "translateY(400%)" } },
         "sweep": { "0%": { transform: "translateY(-10vh)", opacity: "0" }, "10%,90%": { opacity: "0.5" }, "100%": { transform: "translateY(100vh)", opacity: "0" } },
         "ring-spin": { to: { transform: "rotate(360deg)" } },
+        "cloud-drift": {
+          "0%": { transform: "translateX(-12vw)" },
+          "100%": { transform: "translateX(112vw)" },
+        },
+        "block-bob": {
+          "0%, 100%": { transform: "translateY(0) rotate(var(--r, 0deg))" },
+          "50%": { transform: "translateY(-16px) rotate(var(--r, 0deg))" },
+        },
+        "window-blink": { "0%, 100%": { opacity: "0.85" }, "50%": { opacity: "0.25" } },
       },
       animation: {
         "scan-line": "scan-line 3.5s ease-in-out infinite",
@@ -75,6 +84,9 @@ export default {
         "stream-down": "stream-down 4s linear infinite",
         sweep: "sweep 9s ease-in-out infinite",
         "ring-spin": "ring-spin 14s linear infinite",
+        "cloud-drift": "cloud-drift 60s linear infinite",
+        "block-bob": "block-bob 7s ease-in-out infinite",
+        "window-blink": "window-blink 4s ease-in-out infinite",
       },
     },
   },

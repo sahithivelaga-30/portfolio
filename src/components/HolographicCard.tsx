@@ -6,7 +6,7 @@ import { profile, profileTags } from "../content";
  * Premium semi-dark holographic photo card: cyan glow border, purple shadow,
  * scan line, gaming HUD corner brackets, 3D tilt. Placeholder-safe.
  */
-export function HolographicCard() {
+export function HolographicCard({ size = "default" }: { size?: "default" | "lg" }) {
   const reduce = useReducedMotion();
   const [imgOk, setImgOk] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
@@ -27,7 +27,7 @@ export function HolographicCard() {
       animate={reduce ? undefined : { y: [0, -10, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       style={{ transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
-      className="relative w-full max-w-[20rem]"
+      className={`relative w-full ${size === "lg" ? "max-w-[24rem]" : "max-w-[20rem]"}`}
     >
       <div className="gold-frame shadow-glow">
         <div className="relative overflow-hidden rounded-[1.1rem] bg-darknavy p-3">
