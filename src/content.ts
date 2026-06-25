@@ -79,8 +79,7 @@ export const profile: Profile = {
   tagline: "From raw data chaos to cloud intelligence.",
   valueProp: "I turn raw data into scalable, cost-efficient cloud pipelines.",
   proofPoint: "40% reduction in AWS EMR cluster resource consumption.",
-  // Drop sahithi-profile.jpg into public/ and set to "/portfolio/sahithi-profile.jpg".
-  photo: null,
+  photo: `${import.meta.env.BASE_URL}sahithi-profile.jpg`,
   links: [
     // TODO: replace # with real profile URLs (or remove a button in Contact).
     { label: "LinkedIn", href: "#" },
