@@ -41,8 +41,8 @@ export function NYCSkyline() {
     >
       <defs>
         <linearGradient id="nyc" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#83B5DF" stopOpacity="0.62" />
-          <stop offset="100%" stopColor="#AFD2EC" stopOpacity="0.4" />
+          <stop offset="0%" stopColor="#0A1B2E" stopOpacity="0.96" />
+          <stop offset="100%" stopColor="#142B45" stopOpacity="0.88" />
         </linearGradient>
       </defs>
 
@@ -50,7 +50,7 @@ export function NYCSkyline() {
         <Building key={i} b={b} idx={i} />
       ))}
 
-      <rect x="0" y={BASE - 4} width="1200" height="4" fill="rgba(30,120,194,0.32)" />
+      <rect x="0" y={BASE - 4} width="1200" height="4" fill="rgba(8,22,40,0.6)" />
     </svg>
   );
 }
@@ -58,7 +58,7 @@ export function NYCSkyline() {
 function Building({ b, idx }: { b: B; idx: number }) {
   const bodyTop = BASE - b.h;
   const cx = b.x + b.w / 2;
-  const stroke = "rgba(30,120,194,0.3)";
+  const stroke = "rgba(8,20,36,0.55)";
 
   return (
     <g>
@@ -114,7 +114,7 @@ function Windows({ x, w, top, bottom, idx }: { x: number; w: number; top: number
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const lit = (idx * 7 + r * 3 + c * 5) % 4 === 0;
-      const color = (idx + c) % 3 === 0 ? "#A87E0E" : (idx + r) % 3 === 0 ? "#6D4FCB" : "#0E97B8";
+      const color = (idx + c) % 3 === 0 ? "#F5C542" : (idx + r) % 3 === 0 ? "#8B5CF6" : "#38BDF8";
       cells.push(
         <rect
           key={`${r}-${c}`}
@@ -123,7 +123,7 @@ function Windows({ x, w, top, bottom, idx }: { x: number; w: number; top: number
           width="6"
           height="9"
           rx="1"
-          fill={lit ? color : "rgba(30,120,194,0.16)"}
+          fill={lit ? color : "rgba(190,220,255,0.10)"}
           className={lit ? "animate-window-blink" : undefined}
           style={lit ? { animationDelay: `${(r + c) * 0.35}s` } : undefined}
         />
