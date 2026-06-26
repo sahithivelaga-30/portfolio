@@ -1,4 +1,5 @@
 import { useReducedMotion } from "framer-motion";
+import { NYCSkyline } from "./NYCSkyline";
 
 /**
  * Sky-blue world backdrop:
@@ -71,7 +72,10 @@ export function SkyWorld() {
         </span>
       ))}
 
-      {/* flowing data-network */}
+      {/* New York City skyline */}
+      <NYCSkyline />
+
+      {/* flowing data-network floating in the sky above the city */}
       <DataNetwork />
     </div>
   );
@@ -100,15 +104,10 @@ function DataNetwork() {
   const packetColors = ["#0E97B8", "#6D4FCB", "#A87E0E"];
   return (
     <svg
-      className="absolute inset-x-0 bottom-0 h-[34vh] w-full"
+      className="absolute inset-x-0 bottom-[34vh] h-[26vh] w-full opacity-90"
       viewBox="0 0 1200 300"
       preserveAspectRatio="none"
     >
-      {/* faint grid floor */}
-      {Array.from({ length: 14 }).map((_, i) => (
-        <line key={`g-${i}`} x1={i * 92} y1="0" x2={i * 92} y2="300" stroke="rgba(30,120,194,0.06)" />
-      ))}
-
       {/* edges */}
       {EDGES.map(([a, b], i) => (
         <path
